@@ -1,0 +1,7 @@
+{
+  "name": "RecipeOnGo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
