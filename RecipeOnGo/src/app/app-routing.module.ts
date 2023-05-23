@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HomePageModule } from './home/home.module';
+import {HomePage} from './home/home.page';
+import { LoginPageComponent } from './login-page/login-page.component';
+import { RegisterPageComponent } from './register-page/register-page.component';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    // path: 'home',
+    // loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: 'home', component: HomePage
   },
+  {path: 'login', component: LoginPageComponent},
+  {path: 'register', component: RegisterPageComponent},
   {
     path: '',
     redirectTo: 'home',
