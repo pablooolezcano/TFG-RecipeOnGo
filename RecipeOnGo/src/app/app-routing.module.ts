@@ -4,6 +4,7 @@ import { HomePageModule } from './home/home.module';
 import {HomePage} from './home/home.page';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
+import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
   },
   {path: 'login', component: LoginPageComponent},
   {path: 'register', component: RegisterPageComponent},
+  {path: 'search-recipe', component: SearchRecipeComponent},
   {
     path: '',
     redirectTo: 'home',

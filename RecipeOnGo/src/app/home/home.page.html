@@ -1,22 +1,24 @@
-<ion-header [translucent]="false">
-  <ion-toolbar>
-    <ion-title>
-      Recipe On Go
-    </ion-title>
-  </ion-toolbar>
+<ion-header>
+  <header>
+    <div class="toolbar">
+      <h1 class="centered-title">Recipe on Go</h1>
+    </div>
+  </header>
 </ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to start cooking Recipes?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    <li class="nav-item"><a routerLink="/login" class="nav-link" routerLinkActive="active">Login</a></li>
-    <li class="nav-item"><a routerLink="/register" class="nav-link" routerLinkActive="active">Register</a></li>
-  </div>
+  <section class="home-area">
+    <div class="image-container">
+      <img src="assets\logo.png" alt="foto" class="image">
+    </div>
+    <div id="container">
+      <strong>Ready to start cooking Recipes?</strong>
+      <p>Start with Ionic <a target="_blank" rel="noopener noreferrer"
+          href="https://ionicframework.com/docs/components">UI Components</a></p>
+      <ul class="nav-list">
+        <li class="nav-item"><button type="button" id="homeButton"><a routerLink="/register" class="nav-link" routerLinkActive="active">Login</a></button></li>
+        <li class="nav-item"><button type="button" id="homeButton"><a routerLink="/register" class="nav-link" routerLinkActive="active">Register</a></button></li>
+        <li class="nav-item"><button type="button" id="large-homeButton"><a routerLink="/search-recipe" class="nav-link" routerLinkActive="active">Skip and start cooking</a></button></li>
+      </ul>
+    </div>
+  </section>
 </ion-content>

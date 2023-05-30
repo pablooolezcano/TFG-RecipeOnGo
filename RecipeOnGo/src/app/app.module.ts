@@ -8,9 +8,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
+import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent],
+  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, SearchRecipeComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

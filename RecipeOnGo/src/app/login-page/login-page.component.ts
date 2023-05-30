@@ -9,6 +9,13 @@ export class LoginPageComponent  implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("Helloooo");
+  }
 
+
+  login(){
+    let email = document.getElementById("login-email") as HTMLInputElement;
+    console.log(email.value);
+  }
 }
