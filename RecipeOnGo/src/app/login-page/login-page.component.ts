@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPageComponent  implements OnInit {
 
+  loginEmail : string = "";
+  loginPasswd : string = "";
   constructor() { }
 
   ngOnInit() {
@@ -15,7 +17,12 @@ export class LoginPageComponent  implements OnInit {
 
 
   login(){
-    let email = document.getElementById("login-email") as HTMLInputElement;
-    console.log(email.value);
+    let inputEmail = document.getElementById("login-email") as HTMLInputElement;
+    this.loginEmail = inputEmail.value;
+    console.log(this.loginEmail);
+
+    let inputPasswd = document.getElementById("login-passwd") as HTMLInputElement;
+    this.loginPasswd = inputPasswd.value;
+    console.log(this.loginPasswd);
   }
 }
