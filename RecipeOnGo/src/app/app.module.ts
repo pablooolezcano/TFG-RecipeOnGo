@@ -9,9 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
+import { ShoppingCartPageComponent } from './shopping-cart-page/shopping-cart-page.component';
+import { FavouritesPageComponent } from './favourites-page/favourites-page.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, SearchRecipeComponent],
+  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, SearchRecipeComponent, ShoppingCartPageComponent, FavouritesPageComponent],
   imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule ,AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

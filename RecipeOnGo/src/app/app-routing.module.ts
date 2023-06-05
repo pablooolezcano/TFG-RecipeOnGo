@@ -5,6 +5,8 @@ import {HomePage} from './home/home.page';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
+import { ShoppingCartPageComponent } from './shopping-cart-page/shopping-cart-page.component';
+import { FavouritesPageComponent } from './favourites-page/favourites-page.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,8 @@ const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
   {path: 'register', component: RegisterPageComponent},
   {path: 'search-recipe', component: SearchRecipeComponent},
+  {path: 'shopping-cart', component: ShoppingCartPageComponent},
+  {path: 'favourites', component: FavouritesPageComponent},
   {
     path: '',
     redirectTo: 'home',
