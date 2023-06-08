@@ -1,0 +1,29 @@
+header {
+    background-color: rgb(92, 173, 64);
+    padding: 1px;
+  }
+  
+  .toolbar {
+    text-align: center;
+  }
+  
+  .centered-title {
+    color: white;
+    font-weight: bold;
+  }
+.shopping-list-area {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  .shopping-list-container {
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }

@@ -11,9 +11,10 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
 import { ShoppingCartPageComponent } from './shopping-cart-page/shopping-cart-page.component';
 import { FavouritesPageComponent } from './favourites-page/favourites-page.component';
+import { FooterComponent } from './common/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, SearchRecipeComponent, ShoppingCartPageComponent, FavouritesPageComponent],
+  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, SearchRecipeComponent, ShoppingCartPageComponent, FavouritesPageComponent, FooterComponent],
   imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule ,AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

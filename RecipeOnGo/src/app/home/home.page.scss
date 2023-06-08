@@ -98,3 +98,28 @@ header {
 #homeButton a{
   color: white;
 }
+
+footer {
+  background-color: rgb(92, 173, 64);
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-around;
+}
+
+.toolbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.toolbar i {
+  margin: 0 10px;
+}
