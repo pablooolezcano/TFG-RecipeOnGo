@@ -1,0 +1,42 @@
+<ion-header>
+  <header>
+    <div class="toolbar">
+      <h1 class="centered-title">Login Page</h1>
+    </div>
+  </header>
+</ion-header>
+<ion-content>
+  <section class="profile-authentication-area">
+    <ion-card>
+      <div class="container">
+        <div class="row">
+          <div class="login-container">
+            <div class="login-form">
+
+              <form class="form">
+                <div class="form-group">
+                  <label id="email">Introduzca email</label>
+                  <input type="email" id="login-email" class="form-control" placeholder="Introduzca email"
+                    name="username">
+                </div>
+
+                <div class="form-group">
+                  <label id="password">Contraseña</label>
+                  <input type="password" id="login-passwd" class="form-control" placeholder="Contraseña"
+                    name="password">
+                </div>
+                <div class="button-container">
+                  <button type="button" id="loginButton" (click)="login()">LOGIN</button>
+                </div>
+              </form>
+            </div>
+            <!-- <div *ngIf="errorMessage" class="alert alert-danger mt-2" role="alert">
+                {{errorMessage}}
+              </div> -->
+          </div>
+        </div>
+      </div>
+    </ion-card>
+  </section>
+</ion-content>
+<app-footer></app-footer>
