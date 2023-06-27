@@ -11,12 +11,22 @@ header {
     color: white;
     font-weight: bold;
   }
+  .form-control {
+    background-color: rgba(0, 128, 0, 0.2);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 .shopping-list-area {
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+      flex-direction: column;
   }
   .shopping-list-container {
       background-color: white;
@@ -26,4 +36,42 @@ header {
       flex-direction: column;
       align-items: center;
       justify-content: center;
+  }
+  #searchButton {
+    margin-top: 10px;
+    background-color: rgb(92, 173, 64);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 10px 20px;
+    width: 50%;
+    height: 30%;
+    font-weight: bold;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .form {
+    align-items: center;
+  }
+  #search_text{
+    margin-top: 10px;
+  }
+  ion-card {
+    margin-top: 20px;
+  }
+  
+  .card-content {
+    padding: 10px;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
   }

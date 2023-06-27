@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { initializeApp } from "firebase/app";
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login-page',
@@ -27,14 +28,8 @@ export class LoginPageComponent  implements OnInit {
     this.loginPasswd = inputPasswd.value;
     console.log(this.loginPasswd);
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBJBhRXEBneIs_Vt02WfoJN8F4w-4nc89Q",
-      authDomain: "tfg-recipeongo.firebaseapp.com",
-      projectId: "tfg-recipeongo",
-      storageBucket: "tfg-recipeongo.appspot.com",
-      messagingSenderId: "622085164849",
-      appId: "1:622085164849:web:a0d0357f446b3d215eaa10"
-    };
+    const firebaseConfig = environment.firebaseConfig;
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
 
