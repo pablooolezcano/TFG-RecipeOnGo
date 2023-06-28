@@ -8,8 +8,26 @@
 <ion-content>
   <section class="shopping-list-area ptb-100">
     <!-- Aqui debería ser una lista de cosas introducidas por texto el usuario, o lo max guapo seria que eligiese ingredientes de imagenes pulsando en ellas -->
+    <div class="div-master ptb-100">
+      <div *ngFor="let item of shoppingList">
+        <ion-card> 
+          <div class="card-content">
+            <h2 class="card-title">{{item}}</h2>
+          </div>
+        </ion-card>
+      </div> 
+    </div>
     <ion-card>
       <div class="shopping-list-container">
+          <form class="form">
+            <div class="form-group">
+              <label id="name">Escriba los alimentos</label>
+              <input type="text" id="input_text" class="form-control" placeholder="Rice">
+            </div>
+            <div class="button-container">
+              <button type="button" id="searchButton" (click)="database()">Update</button>
+            </div>
+          </form>
       </div>
     </ion-card>
   </section>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { initializeApp } from "firebase/app";
+import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register-page',
@@ -12,9 +15,12 @@ export class RegisterPageComponent  implements OnInit {
   registerPasswd : string = "";
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+  }
 
   register(){
+    
     let inputName = document.getElementById("register-name") as HTMLInputElement;
     this.registerName = inputName.value;
     console.log(this.registerName);
@@ -26,6 +32,29 @@ export class RegisterPageComponent  implements OnInit {
     let inputPasswd = document.getElementById("register-passwd") as HTMLInputElement;
     this.registerPasswd = inputPasswd.value;
     console.log(this.registerPasswd);
+
+
+    const firebaseConfig = environment.firebaseConfig;
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    
+
+    const registerUser = async () => {
+      try {
+        const userCredential = await createUserWithEmailAndPassword(
+          auth,
+          this.registerEmail,
+          this.registerPasswd
+        );
+    
+        // El usuario se ha registrado exitosamente
+        console.log("Usuario registrado:", userCredential.user);
+      } catch (error) {
+        // Ocurrió un error durante el registro
+        console.error("Error al registrar usuario:", error);
+      }
+    };
+    registerUser();
   }
 
 }
