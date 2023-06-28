@@ -7,7 +7,8 @@
 </ion-header>
 <ion-content>
   <section class="search-area ptb-100">
-    <ion-card>
+
+    <ion-card *ngIf="!existResult">
       <div class="search-container">
         <form class="form">
           <div class="form-group">
@@ -19,14 +20,24 @@
           </div>
         </form>
       </div>
-      <div *ngIf="imageUrl!= ''" class="card-content">
-        <div class="image-container">
-          <img src={{imageUrl}} alt="Imagen">
-        </div>
-        <h2 class="card-title">{{recipeTitle}}</h2>
-      </div>
     </ion-card>
+    <div class="div-master ptb-100">
+      <div *ngFor="let item of recipes">
+        <ion-card>
+          <a (click)="goDetail(item)"> 
+          <div *ngIf="imageUrl!= ''" class="card-content">
+            <div class="image-container">
+              <img src={{item.image}} alt="Imagen">
+            </div>
+            <h2 class="card-title">{{item.title}}</h2>
+          </div>
+        </a>
+        </ion-card>
+      </div> 
+    </div>
+
   </section>
 </ion-content>
 <app-footer></app-footer>
 
+<!-- [routerLink]="['/recipe-detail', item.id]" -->

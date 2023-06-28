@@ -1,0 +1,34 @@
+<ion-header>
+  <header>
+    <div class="toolbar">
+      <!-- <h1 class="centered-title">Recipe Detail (Title)</h1> -->
+      <h1 class="centered-title">{{recipeTitle}}</h1>
+    </div>
+  </header>
+</ion-header>
+<ion-content>
+  <section class="search-area ptb-100">
+
+    <ion-card>
+      <div class="search-container">
+          <!-- <div class="form-group">
+            <label id="name">Detalle Receta</label>
+          </div> -->
+            <div *ngIf="imageUrl!= ''" class="card-content">
+              <div class="image-container">
+                <img src={{imageUrl}} alt="Imagen">
+              </div>
+              <!-- <h2 class="card-title">{{recipeTitle}}</h2> -->
+              <h5 class="card-title">Used ingredients</h5>
+              <p *ngFor="let item of usedIngredients">{{item.original}}</p>
+              <h5 class="card-title">Missing ingredients</h5>
+              <p *ngFor="let item of missingIngredients">{{item.original}}</p>
+              <h5 class="card-title">Recipe Intructions</h5>
+              <p class="card-p-text" *ngFor="let item of recipeIntructions">{{item.number}}. {{item.step}}</p>
+            </div>
+      </div>
+    </ion-card>
+
+  </section>
+</ion-content>
+<app-footer></app-footer>

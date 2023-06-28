@@ -18,7 +18,18 @@ header {
   justify-content: center;
   align-items: center;
   height: 100%;
+  overflow: auto;
+  position: relative;
+  // flex-direction: column; /* Establecer la dirección de la columna para que los elementos se apilen verticalmente */
 }
+.div-master{
+  
+
+  max-height: 670px; //hiper hardcodeado ARREGLAR
+}
+// .section-content {
+//   padding-bottom: 100px; /* Espacio para el footer */
+// }
 
 .form-control {
   background-color: rgba(0, 128, 0, 0.2);
