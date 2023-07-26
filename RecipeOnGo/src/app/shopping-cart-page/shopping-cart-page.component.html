@@ -14,6 +14,7 @@
           <div class="card-content">
             <h2 class="card-title">{{item}}</h2>
           </div>
+          <!-- <ion-button></ion-button> -->
         </ion-card>
       </div> 
     </div>
@@ -25,7 +26,10 @@
               <input type="text" id="input_text" class="form-control" placeholder="Rice">
             </div>
             <div class="button-container">
-              <button type="button" id="searchButton" (click)="database()">Update</button>
+              <button type="button" id="searchButton" (click)="add_to_database()">Update</button>
+            </div>
+            <div class="button-container">
+              <ion-button (click)="deleteList()">Delete List</ion-button>
             </div>
           </form>
       </div>
