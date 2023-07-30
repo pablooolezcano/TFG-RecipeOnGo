@@ -11,7 +11,7 @@
     <div class="div-master ptb-100">
       <div *ngFor="let item of shoppingList">
         <ion-card> 
-          <div class="card-content">
+          <div *ngIf="item != ''" class="card-content">
             <h2 class="card-title">{{item}}</h2>
           </div>
           <!-- <ion-button></ion-button> -->
