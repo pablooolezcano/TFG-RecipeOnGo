@@ -12,9 +12,10 @@ export const environment = {
     storageBucket: "tfg-recipeongo.appspot.com",
     messagingSenderId: "622085164849",
     appId: "1:622085164849:web:a0d0357f446b3d215eaa10",
-    databaseURL: "https://tfg-recipeongo-default-rtdb.europe-west1.firebasedatabase.app/"
   },
 };
+//RealTime Database url:
+//databaseURL: "https://tfg-recipeongo-default-rtdb.europe-west1.firebasedatabase.app/"
 
 /*
  * For easier debugging in development mode, you can import the following file

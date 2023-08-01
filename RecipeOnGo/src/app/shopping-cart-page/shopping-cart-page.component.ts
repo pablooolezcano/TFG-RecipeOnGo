@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, onValue } from "firebase/database";
 import { environment } from 'src/environments/environment';
+import { getFirestore, doc,getDoc, setDoc, updateDoc } from "firebase/firestore";
 @Component({
   selector: 'app-shopping-cart-page',
   templateUrl: './shopping-cart-page.component.html',
@@ -9,43 +9,82 @@ import { environment } from 'src/environments/environment';
 })
 export class ShoppingCartPageComponent  implements OnInit {
 
-  shoppingList: any;
+  shoppingList: any = [""];
   aux: any;
   inputText: string = "";
+  user_uid: string | null = localStorage.getItem('user_login_uid');
 
   constructor() { }
 
   ngOnInit() {
     const firebaseConfig = environment.firebaseConfig;
     const app = initializeApp(firebaseConfig);
-    // Initialize Realtime Database and get a reference to the service
-    const db = getDatabase();
-    const shoppingListResponse = ref(db, 'shopping-list/' + 1);
+    
+    this.getFireDatabaseDoc();
 
-    onValue(shoppingListResponse, (snapshot) => {
-      console.log(snapshot.val());
-      this.aux = snapshot.val();
-      const data = Object.values(snapshot.val());
-      console.log(data);
-      this.shoppingList = data;
-    });
   }
-  database(){
-    // Initialize Firebase
-    let inputText = document.getElementById("input_text") as HTMLInputElement;
-    this.inputText = inputText.value;
+  
+  async getFireDatabaseDoc(){
+    const db = getFirestore();
+    const docRef = doc(db, "shopping-lists", "" + this.user_uid);
+
+    try{
+      const docSnap = await getDoc(docRef);
+      if(docSnap.exists()){
+        this.shoppingList = docSnap.data()['list'];
+        console.log(this.shoppingList)
+      }
+    } catch(error) {
+      console.log(error)
+    }
+  }
+  add_to_database(){
+
     const firebaseConfig = environment.firebaseConfig;
     const app = initializeApp(firebaseConfig);
-    // Initialize Realtime Database and get a reference to the service
-    const db = getDatabase();
-    const data = this.aux;
-    //tengo que recuperar todo el documento, y añadir lo nuevo y set el doc ded nuevo??
-    
-    // set(ref(db, 'shopping-list/' + 1), {
-    //   shopping_list_item: this.inputText,
+    const db = getFirestore(app);
 
-    // });
-  console.log("Done ?");
+    let list;
+    let inputText = document.getElementById("input_text") as HTMLInputElement;
+    this.inputText = inputText.value;
+    if(this.inputText != ""){
+      list = this.shoppingList;
+      list.push(this.inputText);
+    }
+    if(this.user_uid != null){
+      const docRef = doc(db, "shopping-lists", "" + this.user_uid);
+    let data = {
+      "list": list
+    };
+    setDoc(docRef, data);
+    }
+
+  }
+  deleteList(){
+    
+    const firebaseConfig = environment.firebaseConfig;
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const docRef = doc(db, "shopping-lists", "" + this.user_uid);
+    this.shoppingList = [""];
+    const data = {
+      "list": this.shoppingList
+    }
+    updateDoc(docRef, data)
   }
 
+  //si todo va bien xd:
+  deleteListItem(){
+
+  }
+
+  //Get All Documents from a FireStoreCollection:
+  // const colRef = collection(db, "shopping-lists");
+    // const docsSnap = await getDocs(colRef);
+    // docsSnap.forEach(doc => {
+
+    //   this.shoppingList = doc.data()['list'];
+    //   //console.log(doc.data());
+    // })
 }
