@@ -1,0 +1,55 @@
+<ion-header>
+  <header>
+    <div class="toolbar">
+      <h1 class="centered-title">Profile Page</h1>
+    </div>
+  </header>
+</ion-header>
+<ion-content>
+  <section class="profile-authentication-area">
+    <ion-card>
+        <div class="row">
+          <div class="register-container">
+            <div class="register-form">
+
+              <h2>Información de usuario</h2>
+              <form class="form">
+                <div class="form-group">
+                  <label id="name">Nombre</label>
+                  <h3 id="email">* Nombre del User*</h3>
+                </div>
+
+                <div class="form-group">
+                  <label id="email">Email</label>
+                  <h3 id="email">* Email del User*</h3>
+                </div>
+
+                <div class="form-group">
+                  <label id="password">Cambiar contraseña Contraseña (??)</label>
+                  <input type="password" id="register-passwd" class="form-control" placeholder="Contraseña"
+                    name="password">
+                </div>
+                <div class="button-container">
+                  <button type="button" id="registerButton" (click)="changePassword()">Cambiar Contraseña ?</button>
+                </div>
+              </form>
+            </div>
+            <!-- <div *ngIf="errorMessage" class="alert alert-danger mt-2" role="alert">
+                {{errorMessage}}
+              </div> -->
+          </div>
+        </div>
+    </ion-card>
+    <ion-card>
+          <div class="register-container">
+            <div class="register-form">
+              <h5>Pulsa Para cerrar sesión</h5>
+                <div class="button-container">
+                  <button type="button" id="LogOutButton" (click)="logOut()">Log Out</button>
+                </div>
+            </div>
+          </div>
+    </ion-card>
+  </section>
+</ion-content>
+<app-footer></app-footer>

@@ -8,7 +8,10 @@
       <a routerLink="/search-recipe" routerLinkActive="active"><i class="fas fa-search"></i></a>
       <a routerLink="/favourites" routerLinkActive="active"><i class="fas fa-heart"></i></a>
       <a routerLink="/shopping-cart" routerLinkActive="active"><i class="fas fa-shopping-cart"></i></a>
-      <a routerLink="/register" routerLinkActive="active"><i class="fas fa-user"></i></a>
+
+      <a *ngIf="isLogged" routerLink="/profile" routerLinkActive="active"><i class="fas fa-user"></i></a>
+      <a *ngIf="!isLogged" routerLink="/login" routerLinkActive="active"><i class="fas fa-user"></i></a>
+      
     </div>
   </footer>
 </ion-footer>
