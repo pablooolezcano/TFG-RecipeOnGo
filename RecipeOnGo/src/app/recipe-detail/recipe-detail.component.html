@@ -7,6 +7,9 @@
   </header>
 </ion-header>
 <ion-content>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
   <section class="search-area ptb-100">
 
     <ion-card>
@@ -18,6 +21,10 @@
               <div class="image-container">
                 <img src={{imageUrl}} alt="Imagen">
               </div>
+              <button class="favorite-button" [class.selected]="isFavorite" (click)="toggleFavorite()">
+                <span class="heart-icon"></span>
+              </button>
+              <p class="card-p-text">Add to favourites</p>
               <!-- <h2 class="card-title">{{recipeTitle}}</h2> -->
               <h5 class="card-title">Used ingredients</h5>
               <p *ngFor="let item of usedIngredients">{{item.original}}</p>

@@ -16,6 +16,8 @@ export class RecipeDetailComponent  implements OnInit {
   usedIngredients: any = "";
   recipeIntructions: any;
 
+  isFavorite: boolean = false;
+
   constructor(private router: Router, private apiService: SpooncularApiService) { }
 
   ngOnInit() {
@@ -49,6 +51,9 @@ export class RecipeDetailComponent  implements OnInit {
     );
     
   }
+  }
+  toggleFavorite() {
+    this.isFavorite = !this.isFavorite;
   }
 
 }
