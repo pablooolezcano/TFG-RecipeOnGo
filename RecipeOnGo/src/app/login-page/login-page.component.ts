@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { initializeApp } from "firebase/app";
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import { environment } from 'src/environments/environment';
-
+import { Router} from '@angular/router';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -12,10 +12,13 @@ export class LoginPageComponent  implements OnInit {
 
   loginEmail : string = "";
   loginPasswd : string = "";
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log("Helloooo");
+    let uid = localStorage.getItem('user_login_uid');
+    if(uid){
+      this.router.navigateByUrl("/");
+    }
   }
 
 
@@ -32,7 +35,7 @@ export class LoginPageComponent  implements OnInit {
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
-
+    
     const loginUser = async () => {
       try {
         const userCredential = await signInWithEmailAndPassword(
@@ -42,7 +45,9 @@ export class LoginPageComponent  implements OnInit {
         );
     
         // El usuario ha iniciado sesión exitosamente
-        console.log("Usuario ha iniciado sesión:", userCredential.user);
+        console.log("Usuario ha iniciado sesión:", userCredential.user.uid);
+        localStorage.setItem('user_login_uid', userCredential.user.uid);
+        this.router.navigateByUrl("/favourites");
       } catch (error) {
         // Ocurrió un error durante el inicio de sesión
         console.error("Error al iniciar sesión:", error);
