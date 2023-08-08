@@ -13,9 +13,8 @@ import { ShoppingCartPageComponent } from './shopping-cart-page/shopping-cart-pa
 import { FavouritesPageComponent } from './favourites-page/favourites-page.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, SearchRecipeComponent, ShoppingCartPageComponent, FavouritesPageComponent, FooterComponent, RecipeDetailComponent, ProfilePageComponent],
+  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, SearchRecipeComponent, ShoppingCartPageComponent, FavouritesPageComponent, FooterComponent, RecipeDetailComponent],
   imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule ,AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
