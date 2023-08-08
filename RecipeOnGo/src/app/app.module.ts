@@ -13,13 +13,13 @@ import { ShoppingCartPageComponent } from './shopping-cart-page/shopping-cart-pa
 import { FavouritesPageComponent } from './favourites-page/favourites-page.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, SearchRecipeComponent, ShoppingCartPageComponent, FavouritesPageComponent, FooterComponent, RecipeDetailComponent],
+  declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, SearchRecipeComponent, ShoppingCartPageComponent, FavouritesPageComponent, FooterComponent, RecipeDetailComponent, ProfilePageComponent],
   imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule ,AppRoutingModule, 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore())],
