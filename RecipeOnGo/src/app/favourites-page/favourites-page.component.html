@@ -8,10 +8,24 @@
 <ion-content>
   <section class="favourites-area ptb-100">
     <!-- Aqui debería ser un maestro de recetas -->
-    <ion-card>
+    <!-- <ion-card> -->
       <div class="favourites-container">
+        <div class="div-master ptb-100">
+          <div *ngFor="let item of favouriteRecipes">
+            <ion-card>
+              <a (click)="goDetail(item)"> 
+              <div class="card-content">
+                <div class="image-container">
+                  <img src={{item.image}} alt="Imagen">
+                </div>
+                <h2 class="card-title">{{item.title}}</h2>
+              </div>
+            </a>
+            </ion-card>
+          </div> 
+        </div>
       </div>
-    </ion-card>
+    <!-- </ion-card> -->
   </section>
 </ion-content>
 <app-footer></app-footer>

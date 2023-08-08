@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { getFirestore, doc,getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { environment } from 'src/environments/environment';
 import { initializeApp } from "firebase/app";
+import { SpooncularApiService } from '../services/spooncular-api.service';
+import { Router, NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-favourites-page',
   templateUrl: './favourites-page.component.html',
@@ -10,8 +12,9 @@ import { initializeApp } from "firebase/app";
 export class FavouritesPageComponent  implements OnInit {
 
   user_uid: string | null = localStorage.getItem('user_login_uid');
-  favouritesIdsList: any;
-  constructor() { }
+  favouritesIdsList: Array<any> = [];
+  favouriteRecipes: Array<any> = [];
+  constructor(private apiService: SpooncularApiService, private router: Router) { }
 
   ngOnInit() {
     const firebaseConfig = environment.firebaseConfig;
@@ -33,5 +36,24 @@ export class FavouritesPageComponent  implements OnInit {
     } catch(error) {
       console.log(error)
     }
+    this.favouritesIdsList.forEach(recipeId => {
+      this.apiService.getFavouriteRecipes(recipeId).subscribe(
+        (response) => {
+          console.log(response);
+          this.favouriteRecipes.push(response);
+        }
+      )
+    });
+
+    console.log(this.favouriteRecipes);
   }
+  goDetail(item: any){
+    const navigationExtras: NavigationExtras = {
+      state: {
+        data: item
+      }
+    };
+    this.router.navigate(['/recipe-detail', item.id], navigationExtras);
+  }
+
 }
