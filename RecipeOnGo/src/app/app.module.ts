@@ -13,6 +13,7 @@ import { ShoppingCartPageComponent } from './shopping-cart-page/shopping-cart-pa
 import { FavouritesPageComponent } from './favourites-page/favourites-page.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+
 @NgModule({
   declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, SearchRecipeComponent, ShoppingCartPageComponent, FavouritesPageComponent, FooterComponent, RecipeDetailComponent],
   imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule ,AppRoutingModule],
