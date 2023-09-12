@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router} from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -7,6 +7,13 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  isLogged: boolean = false;
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+    if(localStorage.getItem('user_login_uid')){
+      this.isLogged = true;
+    }
+  }
 
 }
