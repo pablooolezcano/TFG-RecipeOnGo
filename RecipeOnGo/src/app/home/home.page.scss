@@ -61,6 +61,8 @@ header {
   list-style: none;
   padding: 0;
   margin-top: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav-item {
@@ -122,4 +124,9 @@ footer {
 
 .toolbar i {
   margin: 0 10px;
+}
+ion-button{
+  --background: rgb(92, 173, 64);
+  --border-radius: 10px;
+  font-weight: bold;
 }

@@ -80,6 +80,12 @@ header {
 
 ion-card {
   margin-top: 20px;
+  --background: white;
+}
+ion-button{
+  --background: rgb(92, 173, 64);
+  --border-radius: 10px;
+  font-weight: bold;
 }
 
 .card-content {
