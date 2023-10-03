@@ -21,10 +21,9 @@
               <div class="image-container">
                 <img src={{imageUrl}} alt="Imagen">
               </div>
-              <button class="favorite-button" [class.selected]="isFavorite" (click)="toggleFavorite()">
-                <span class="heart-icon"></span>
-              </button>
-              <p class="card-p-text">Add to favourites</p>
+              <div class="fav-check-box-container">
+                <ion-toggle #myToggle (click)="toggleFavorite()">Mark as favourite:</ion-toggle>
+              </div>
               <!-- <h2 class="card-title">{{recipeTitle}}</h2> -->
               <h5 class="card-title">Used ingredients</h5>
               <p *ngFor="let item of usedIngredients">{{item.original}}</p>

@@ -81,6 +81,14 @@ header {
   ion-card {
     margin-top: 20px;
   }
+  ion-toggle {
+    margin-top: 20px;
+    --track-background: #ddd;
+    --track-background-checked: #98e299;
+
+  --handle-background: grey;
+  --handle-background-checked: rgb(92, 173, 64);
+  }
   
   .card-content {
     padding: 10px;
