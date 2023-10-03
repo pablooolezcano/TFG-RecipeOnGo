@@ -60,7 +60,13 @@ header {
     margin-top: 10px;
   }
   ion-card {
+    --background: white;
     margin-top: 20px;
+  }
+  ion-button{
+    --background: rgb(92, 173, 64);
+    --border-radius: 10px;
+    font-weight: bold;
   }
   
   .card-content {

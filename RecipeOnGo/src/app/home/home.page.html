@@ -18,13 +18,23 @@
       <p>Start with Ionic <a target="_blank" rel="noopener noreferrer"
           href="https://ionicframework.com/docs/components">UI Components</a></p>
       <ul class="nav-list">
-        <li class="nav-item"><button type="button" id="homeButton"><a routerLink="/login" class="nav-link" routerLinkActive="active">Login</a></button></li>
-        <li class="nav-item"><button type="button" id="homeButton"><a routerLink="/register" class="nav-link" routerLinkActive="active">Register</a></button></li>
-        <li class="nav-item"><button type="button" id="large-homeButton"><a routerLink="/search-recipe" class="nav-link" routerLinkActive="active">Skip and start cooking</a></button></li>
-        <!-- Este boton de abajo hace que la imagen de arriba se superponga al header, pa tenerlo en cuenta -->
-        <!-- <li class="nav-item"><button type="button" id="large-homeButton"><a routerLink="/shopping-cart" class="nav-link" routerLinkActive="active">Shopping cart</a></button></li> -->
+        <div>
+        <ion-button *ngIf="!isLogged" routerLink="/login" routerLinkActive="active">Login</ion-button>
+        <ion-button *ngIf="!isLogged" routerLink="/register" routerLinkActive="active">Register</ion-button>
+        </div>
+        <div>
+          <ion-button routerLink="/search-recipe" routerLinkActive="active">Skip and start cooking</ion-button>
+        </div>
       </ul>
     </div>
+        <!-- Este boton de abajo hace que la imagen de arriba se superponga al header, pa tenerlo en cuenta -->
+        <!-- <li class="nav-item"><button type="button" id="large-homeButton"><a routerLink="/shopping-cart" class="nav-link" routerLinkActive="active">Shopping cart</a></button></li> -->
+      <!-- <ion-list>
+          <ion-button><a routerLink="/login" class="nav-link" routerLinkActive="active"></a>Login</ion-button>
+          <ion-button><a routerLink="/register" class="nav-link" routerLinkActive="active"></a>Register</ion-button>
+          <ion-button><a routerLink="/search-recipe" class="nav-link" routerLinkActive="active"></a>Skip and start cooking</ion-button>
+      </ion-list> -->
+
   </section>
 </ion-content>
 <ion-footer>

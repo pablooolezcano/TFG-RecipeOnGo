@@ -19,6 +19,12 @@
       </div> 
     </div>
     <ion-card>
+      <ion-card-content>
+        <!-- <ion-item color="white">
+          <div class="form-group">
+            <ion-input placeholder="Rice">Escriba los alimentos</ion-input>
+          </div>
+        </ion-item> -->
       <div class="shopping-list-container">
           <form class="form">
             <div class="form-group">
@@ -26,13 +32,20 @@
               <input type="text" id="input_text" class="form-control" placeholder="Rice">
             </div>
             <div class="button-container">
-              <button type="button" id="searchButton" (click)="add_to_database()">Update</button>
+              <ion-button (click)="add_to_database()">
+                <ion-icon slot="start" name="arrow-up-outline"></ion-icon>
+                Update
+              </ion-button>
             </div>
             <div class="button-container">
-              <ion-button (click)="deleteList()">Delete List</ion-button>
+              <ion-button color="danger" (click)="deleteList()">
+                <ion-icon slot="start" name="close-outline"></ion-icon>
+                Delete List
+              </ion-button>
             </div>
           </form>
       </div>
+    </ion-card-content>
     </ion-card>
   </section>
 </ion-content>

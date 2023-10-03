@@ -30,7 +30,7 @@
                     name="password">
                 </div>
                 <div class="button-container">
-                  <button type="button" id="registerButton" (click)="changePassword()">Cambiar Contraseña ?</button>
+                  <ion-button (click)="changePassword()">Cambiar Contraseña ?</ion-button>
                 </div>
               </form>
             </div>
@@ -45,7 +45,8 @@
             <div class="register-form">
               <h5>Pulsa Para cerrar sesión</h5>
                 <div class="button-container">
-                  <button type="button" id="LogOutButton" (click)="logOut()">Log Out</button>
+                  <ion-button color="danger" (click)="logOut()">Log Out</ion-button>
+                  <!-- <button type="button" id="LogOutButton" (click)="logOut()">Log Out</button> -->
                 </div>
             </div>
           </div>
