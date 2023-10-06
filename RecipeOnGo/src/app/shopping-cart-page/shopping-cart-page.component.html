@@ -10,11 +10,13 @@
     <!-- Aqui debería ser una lista de cosas introducidas por texto el usuario, o lo max guapo seria que eligiese ingredientes de imagenes pulsando en ellas -->
     <div class="div-master ptb-100">
       <div *ngFor="let item of shoppingList">
-        <ion-card> 
-          <div *ngIf="item != ''" class="card-content">
-            <h2 class="card-title">{{item}}</h2>
+        <ion-card *ngIf="item != ''"> 
+          
+          <div  class="card-content">
+            <ion-card-title color="medium">{{item}}</ion-card-title>
+            <!-- <h2 class="card-title">{{item}}</h2> -->
+            <ion-icon name="close-circle" size="large" (click)="deleteListItem(item)"></ion-icon>
           </div>
-          <!-- <ion-button></ion-button> -->
         </ion-card>
       </div> 
     </div>
@@ -38,10 +40,19 @@
               </ion-button>
             </div>
             <div class="button-container">
-              <ion-button color="danger" (click)="deleteList()">
+              <ion-button id="delete-list-button" color="danger">
                 <ion-icon slot="start" name="close-outline"></ion-icon>
                 Delete List
               </ion-button>
+              <ion-alert 
+              class="custom-alert"
+              mode="ios"
+              trigger="delete-list-button"
+              header="Alert"
+              subHeader="Important message"
+              message="Are you sure about deleting the hole shopping list?"
+              [buttons]="alertButtons">
+              </ion-alert>
             </div>
           </form>
       </div>

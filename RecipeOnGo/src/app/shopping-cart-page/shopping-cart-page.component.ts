@@ -9,6 +9,23 @@ import { getFirestore, doc,getDoc, setDoc, updateDoc } from "firebase/firestore"
 })
 export class ShoppingCartPageComponent  implements OnInit {
 
+  public alertButtons = [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => {
+        console.log('Alert canceled');
+      },
+    },
+    {
+      text: 'Yes',
+      role: 'confirm',
+      handler: () => {
+        console.log('Alert confirmed');
+        this.deleteList();
+      },
+    },
+  ];
   shoppingList: any = [""];
   aux: any;
   inputText: string = "";
@@ -61,7 +78,6 @@ export class ShoppingCartPageComponent  implements OnInit {
 
   }
   deleteList(){
-    
     const firebaseConfig = environment.firebaseConfig;
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
@@ -75,8 +91,25 @@ export class ShoppingCartPageComponent  implements OnInit {
   }
 
   //si todo va bien xd:
-  deleteListItem(){
-
+  deleteListItem(item: string) {
+    console.log("Holi");
+    const firebaseConfig = environment.firebaseConfig;
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    let list = [];
+    if (this.shoppingList) {
+      list = this.shoppingList;
+      if (list.includes(item)) {
+        console.log(item)
+        let index = list.indexOf(item);
+        list.splice(index, 1);
+        const docRef = doc(db, "shopping-lists", "" + this.user_uid);
+        let data = {
+          "list": list
+        };
+        updateDoc(docRef, data);
+      }
+    }
   }
 
   //Get All Documents from a FireStoreCollection:
