@@ -21,7 +21,7 @@
         </form>
       </div>
     </ion-card>
-    <div class="div-master ptb-100">
+    <div class="div-master ptb-100" *ngIf="existResult">
       <div *ngFor="let item of recipes">
         <ion-card>
           <a (click)="goDetail(item)"> 
@@ -35,8 +35,12 @@
         </ion-card>
       </div> 
     </div>
-
   </section>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button *ngIf="existResult" (click)="showSearchBar()">
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
 <app-footer></app-footer>
 

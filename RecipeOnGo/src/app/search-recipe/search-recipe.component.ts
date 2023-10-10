@@ -47,6 +47,9 @@ export class SearchRecipeComponent  implements OnInit {
         // Haz lo que necesites con los datos de la respuesta
       },
     );
-    
+  }
+
+  showSearchBar(){
+    this.existResult = false;
   }
 }

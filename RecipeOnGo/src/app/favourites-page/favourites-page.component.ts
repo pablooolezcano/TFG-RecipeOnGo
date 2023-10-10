@@ -14,6 +14,23 @@ export class FavouritesPageComponent  implements OnInit {
   user_uid: string | null = localStorage.getItem('user_login_uid');
   favouritesIdsList: Array<any> = [];
   favouriteRecipes: Array<any> = [];
+  public alertButtons = [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => {
+        console.log('Alert canceled');
+      },
+    },
+    {
+      text: 'Yes',
+      role: 'confirm',
+      handler: () => {
+        console.log('Alert confirmed');
+        this.deleteFavList();
+      },
+    },
+  ];
   constructor(private apiService: SpooncularApiService, private router: Router) { }
 
   ngOnInit() {
@@ -56,4 +73,21 @@ export class FavouritesPageComponent  implements OnInit {
     this.router.navigate(['/recipe-detail', item.id], navigationExtras);
   }
 
+  goToSearch(){
+    this.router.navigateByUrl("/search-recipe");
+  }
+
+  deleteFavList(){
+    const firebaseConfig = environment.firebaseConfig;
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const docRef = doc(db, "favourites", "" + this.user_uid);
+    this.favouritesIdsList = [];
+    this.favouriteRecipes = [];
+    const data = {
+      "ids": this.favouritesIdsList
+    }
+    updateDoc(docRef, data)
+  }
 }

@@ -27,5 +27,27 @@
       </div>
     <!-- </ion-card> -->
   </section>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="menu-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="goToSearch()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button id="delete-fav-list-button">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-alert 
+              class="custom-alert"
+              mode="ios"
+              trigger="delete-fav-list-button"
+              header="Alert"
+              subHeader="Important message"
+              message="Are you sure about deleting your hole favourite recipes list?"
+              [buttons]="alertButtons">
+              </ion-alert>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>
 <app-footer></app-footer>
