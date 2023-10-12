@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { initializeApp } from "firebase/app";
-import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
+import {getAuth, createUserWithEmailAndPassword, updateProfile, onAuthStateChanged} from "firebase/auth";
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class RegisterPageComponent  implements OnInit {
 
+  @Input("register-name")
   registerName : string = "";
   registerEmail: string = "";
   registerPasswd : string = "";
@@ -33,12 +34,10 @@ export class RegisterPageComponent  implements OnInit {
     this.registerPasswd = inputPasswd.value;
     console.log(this.registerPasswd);
 
-
     const firebaseConfig = environment.firebaseConfig;
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
     
-
     const registerUser = async () => {
       try {
         const userCredential = await createUserWithEmailAndPassword(
@@ -46,7 +45,23 @@ export class RegisterPageComponent  implements OnInit {
           this.registerEmail,
           this.registerPasswd
         );
-    
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            // El usuario está autenticado
+            updateProfile(user, {
+              displayName: this.registerName
+            }).then(() => {
+              console.log("Profile created! (name added)");
+              // ...
+            }).catch((error) => {
+              console.log("An error occurred while updating profile name");
+              // ...
+            });
+          } else {
+            // No hay usuario autenticado
+            console.log("No hay usuario autenticado.");
+          }
+        });
         // El usuario se ha registrado exitosamente
         console.log("Usuario registrado:", userCredential.user);
       } catch (error) {

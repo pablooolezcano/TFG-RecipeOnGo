@@ -8,37 +8,33 @@
 <ion-content>
   <section class="profile-authentication-area">
     <ion-card>
-        <div class="row">
+
           <div class="register-container">
-            <div class="register-form">
 
-              <h2>Información de usuario</h2>
-              <form class="form">
-                <div class="form-group">
-                  <label id="name">Nombre</label>
-                  <h3 id="email">* Nombre del User*</h3>
-                </div>
+              <ion-card-title>User information</ion-card-title>
+              <ion-item-group>
+                <ion-item-divider>
+                  <ion-label id="name">Name</ion-label>
+                </ion-item-divider>
+                <ion-item lines="none">
+                  <ion-card-title id="email">{{userName}}</ion-card-title>
+                    <ion-icon name="pencil-outline" slot="end" (click)="presentChangeNameAlert()"></ion-icon>
+                </ion-item>
+                <ion-item-divider>
+                  <ion-label id="email">Email</ion-label>
+                </ion-item-divider>
+                <ion-item lines="none">
+                  <ion-card-title id="email">{{userEmail}}</ion-card-title>
+                    <ion-icon name="pencil-outline" slot="end" (click)="presentReAuthEmailAlert()"></ion-icon>
+                </ion-item>
+              </ion-item-group>
 
-                <div class="form-group">
-                  <label id="email">Email</label>
-                  <h3 id="email">* Email del User*</h3>
-                </div>
+              <div class="button-container">
+                <ion-button id="change-passwd-button" (click)="presentReAuthPasswordAlert()">Change Password</ion-button>   
+              </div>
 
-                <div class="form-group">
-                  <label id="password">Cambiar contraseña Contraseña (??)</label>
-                  <input type="password" id="register-passwd" class="form-control" placeholder="Contraseña"
-                    name="password">
-                </div>
-                <div class="button-container">
-                  <ion-button (click)="changePassword()">Cambiar Contraseña ?</ion-button>
-                </div>
-              </form>
-            </div>
-            <!-- <div *ngIf="errorMessage" class="alert alert-danger mt-2" role="alert">
-                {{errorMessage}}
-              </div> -->
           </div>
-        </div>
+
     </ion-card>
     <ion-card>
           <div class="register-container">
