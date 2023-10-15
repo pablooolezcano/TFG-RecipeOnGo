@@ -10,10 +10,14 @@ export class HomePage {
   isLogged: boolean = false;
   constructor(private router: Router) { }
 
-  ngOnInit() {
+  ionViewWillEnter(){
     if(localStorage.getItem('user_login_uid')){
       this.isLogged = true;
     }
+  }
+
+  ngOnInit() {
+    
   }
 
 }

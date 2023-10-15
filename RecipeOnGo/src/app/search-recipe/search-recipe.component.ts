@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SpooncularApiService } from '../services/spooncular-api.service';
 import { Router, NavigationExtras } from '@angular/router';
-
+import type { IonInput } from '@ionic/angular';
 @Component({
   selector: 'app-search-recipe',
   templateUrl: './search-recipe.component.html',
@@ -12,9 +12,10 @@ export class SearchRecipeComponent  implements OnInit {
   imageUrl : string = "";
   recipeTitle: string = "";
   searchText: string = "";
+  @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;
   recipes: any = "";
   existResult: boolean = false;
-  
+
   constructor(private apiService: SpooncularApiService, private router: Router) { }
 
   ngOnInit() {
@@ -31,9 +32,19 @@ export class SearchRecipeComponent  implements OnInit {
     this.router.navigate(['/recipe-detail', item.id], navigationExtras);
   }
 
-  search(){
+
+  onInputText(ev: any) {
+    const value = ev.target!.value;
+    this.ionInputEl.value = this.searchText = value;
+  }
+  search(event: any){
+    console.log(event.detail.value)
+    // let searchBarText = this.mySearchBar.value;
+    // console.log(searchBarText);
+
     let inputText = document.getElementById("search_text") as HTMLInputElement;
-    this.searchText = inputText.value;
+    //this.searchText = inputText.value;
+    this.searchText = event.detail.value;
     console.log(typeof this.searchText);
     let recipeResponse = {};
     this.apiService.getRecipes(this.searchText).subscribe(
@@ -47,6 +58,9 @@ export class SearchRecipeComponent  implements OnInit {
         // Haz lo que necesites con los datos de la respuesta
       },
     );
+  }
+  search2(){
+    
   }
 
   showSearchBar(){

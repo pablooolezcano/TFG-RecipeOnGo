@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { initializeApp } from "firebase/app";
 import { environment } from 'src/environments/environment';
 import { getFirestore, doc,getDoc, setDoc, updateDoc } from "firebase/firestore";
+import type { IonInput } from '@ionic/angular';
 @Component({
   selector: 'app-shopping-cart-page',
   templateUrl: './shopping-cart-page.component.html',
@@ -26,6 +27,7 @@ export class ShoppingCartPageComponent  implements OnInit {
       },
     },
   ];
+  @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;
   shoppingList: any = [""];
   aux: any;
   inputText: string = "";
@@ -55,6 +57,11 @@ export class ShoppingCartPageComponent  implements OnInit {
       console.log(error)
     }
   }
+  onInputText(ev: any) {
+    const value = ev.target!.value;
+    this.ionInputEl.value = this.inputText = value;
+  }
+
   add_to_database(){
 
     const firebaseConfig = environment.firebaseConfig;
@@ -62,8 +69,8 @@ export class ShoppingCartPageComponent  implements OnInit {
     const db = getFirestore(app);
 
     let list;
-    let inputText = document.getElementById("input_text") as HTMLInputElement;
-    this.inputText = inputText.value;
+    // let inputText = document.getElementById("input_text") as HTMLInputElement;
+    // this.inputText = inputText.value;
     if(this.inputText != ""){
       list = this.shoppingList;
       list.push(this.inputText);

@@ -1,10 +1,15 @@
 <ion-header>
-  <header>
+  <!-- <header>
     <div class="toolbar">
-      <!-- <h1 class="centered-title">Recipe Detail (Title)</h1> -->
       <h1 class="centered-title">{{recipeTitle}}</h1>
     </div>
-  </header>
+  </header> -->
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{recipeTitle}}</ion-title>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
   <head>
@@ -21,7 +26,7 @@
               <div class="image-container">
                 <img src={{imageUrl}} alt="Imagen">
               </div>
-              <div class="fav-check-box-container">
+              <div class="fav-check-box-container" *ngIf="user_uid">
                 <ion-toggle #myToggle (click)="toggleFavorite()">Mark as favourite:</ion-toggle>
               </div>
               <!-- <h2 class="card-title">{{recipeTitle}}</h2> -->

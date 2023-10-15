@@ -20,7 +20,7 @@ import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent, LoginPageComponent, RegisterPageComponent, SearchRecipeComponent, ShoppingCartPageComponent, FavouritesPageComponent, FooterComponent, RecipeDetailComponent, ProfilePageComponent],
-  imports: [BrowserModule, IonicModule.forRoot(),HttpClientModule ,AppRoutingModule, 
+  imports: [BrowserModule, IonicModule ,IonicModule.forRoot(),HttpClientModule ,AppRoutingModule, 
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore())],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],

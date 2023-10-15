@@ -1,9 +1,11 @@
 <ion-header>
-  <header>
-    <div class="toolbar">
+
+    <!-- <div class="toolbar">
       <h1 class="centered-title">Profile Page</h1>
-    </div>
-  </header>
+    </div> -->
+    <ion-toolbar mode="md">
+      <ion-title>Profile Page</ion-title>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
   <section class="profile-authentication-area">
@@ -14,7 +16,7 @@
               <ion-card-title>User information</ion-card-title>
               <ion-item-group>
                 <ion-item-divider>
-                  <ion-label id="name">Name</ion-label>
+                  <ion-label>Name</ion-label>
                 </ion-item-divider>
                 <ion-item lines="none">
                   <ion-card-title id="email">{{userName}}</ion-card-title>

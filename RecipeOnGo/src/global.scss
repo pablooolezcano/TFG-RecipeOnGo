@@ -29,6 +29,16 @@ ion-alert.custom-alert {
     --backdrop-opacity: 0.7;
     
 }
+ion-item-divider{
+    --background: white;
+}
+ion-toolbar{
+    --background: rgb(92, 173, 64);
+    --color: white;
+}
+ion-back-button{
+    --color: white;
+}
 
 .custom-alert .alert-button-group {
     padding: 8px;

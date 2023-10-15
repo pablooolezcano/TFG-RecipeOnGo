@@ -106,6 +106,7 @@ export class ProfilePageComponent  implements OnInit {
         console.log("Usuario autenticado:", user.uid);
         deleteUserFirebase(user);
         deleteUserDataFromFire(user.uid);
+        this.router.navigateByUrl("/");
       } else {
         // No hay usuario autenticado
         console.log("No hay usuario autenticado.");
