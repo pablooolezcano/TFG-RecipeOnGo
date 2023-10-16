@@ -11,6 +11,7 @@ export class HomePage {
   constructor(private router: Router) { }
 
   ionViewWillEnter(){
+    this.isLogged = false;
     if(localStorage.getItem('user_login_uid')){
       this.isLogged = true;
     }

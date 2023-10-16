@@ -18,6 +18,10 @@ export class SearchRecipeComponent  implements OnInit {
 
   constructor(private apiService: SpooncularApiService, private router: Router) { }
 
+  ionViewWillEnter(){
+
+  }
+
   ngOnInit() {
     
     //console.log(this.apiService.getRecipes().pipe());
@@ -58,9 +62,6 @@ export class SearchRecipeComponent  implements OnInit {
         // Haz lo que necesites con los datos de la respuesta
       },
     );
-  }
-  search2(){
-    
   }
 
   showSearchBar(){

@@ -3,6 +3,8 @@ import { initializeApp } from "firebase/app";
 import { environment } from 'src/environments/environment';
 import { getFirestore, doc,getDoc, setDoc, updateDoc } from "firebase/firestore";
 import type { IonInput } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-shopping-cart-page',
   templateUrl: './shopping-cart-page.component.html',
@@ -31,16 +33,21 @@ export class ShoppingCartPageComponent  implements OnInit {
   shoppingList: any = [""];
   aux: any;
   inputText: string = "";
-  user_uid: string | null = localStorage.getItem('user_login_uid');
+  user_uid: string | null = "";
 
-  constructor() { }
+  constructor(private alertController: AlertController, private router: Router) { }
 
+  ionViewWillEnter(){
+    this.user_uid = localStorage.getItem('user_login_uid');
+    this.getFireDatabaseDoc();
+
+    if(!this.user_uid){
+      this.presentNotLoginAlert();
+    }
+  }
   ngOnInit() {
     const firebaseConfig = environment.firebaseConfig;
     const app = initializeApp(firebaseConfig);
-    
-    this.getFireDatabaseDoc();
-
   }
   
   async getFireDatabaseDoc(){
@@ -117,6 +124,33 @@ export class ShoppingCartPageComponent  implements OnInit {
         updateDoc(docRef, data);
       }
     }
+  }
+
+  async presentNotLoginAlert() {
+    const alert = await this.alertController.create({
+      mode: "ios",
+      header: "Please register or login",
+      subHeader: "This shopping list functionality needs you to have an account",
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Alert canceled');
+            this.router.navigateByUrl("/");
+          },
+        },
+        {
+          text: 'Go to Login',
+          role: 'confirm',
+          handler: () => {
+            console.log();
+            this.router.navigateByUrl("/login");
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 
   //Get All Documents from a FireStoreCollection:

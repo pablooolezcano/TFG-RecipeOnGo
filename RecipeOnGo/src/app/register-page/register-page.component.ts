@@ -21,6 +21,13 @@ export class RegisterPageComponent  implements OnInit {
   @ViewChild('ionInputE3', { static: true }) ionInputE3!: IonInput;
   constructor(private router: Router) { }
 
+  ionViewWillEnter(){
+    let uid = localStorage.getItem('user_login_uid');
+    if(uid){
+      this.router.navigateByUrl("/");
+    }
+  }
+  
   ngOnInit() {
     
   }

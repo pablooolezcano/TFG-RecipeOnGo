@@ -61,7 +61,7 @@ export class LoginPageComponent  implements OnInit {
         // El usuario ha iniciado sesión exitosamente
         console.log("Usuario ha iniciado sesión:", userCredential.user.uid);
         localStorage.setItem('user_login_uid', userCredential.user.uid);
-        this.router.navigateByUrl("/favourites");
+        this.router.navigateByUrl("/search-recipe");
       } catch (error) {
         // Ocurrió un error durante el inicio de sesión
         console.error("Error al iniciar sesión:", error);
