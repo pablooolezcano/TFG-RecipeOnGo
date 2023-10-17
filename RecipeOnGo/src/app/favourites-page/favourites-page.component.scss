@@ -46,6 +46,14 @@ header {
   }
   ion-card{
     --background: white;
+    padding: 10px;
+  }
+  ion-card-title {
+    --color: rgb(92, 173, 64);
+    font-weight: bold;
+  }
+  ion-image{
+    border-radius: 8px;
   }
   ion-fab-button{
   --background: rgb(92, 173, 64); 

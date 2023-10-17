@@ -13,7 +13,7 @@ export class SpooncularApiService {
     const apiKey = '15b9af73d0d44a19b7cc19073dfcf8a9';
     // recipes by ingredients:
 
-    const url = 'https://api.spoonacular.com/recipes/findByIngredients?apiKey=15b9af73d0d44a19b7cc19073dfcf8a9&ingredients='+ test + '&number=4';
+    const url = 'https://api.spoonacular.com/recipes/findByIngredients?apiKey=15b9af73d0d44a19b7cc19073dfcf8a9&ingredients='+ test + '&number=8';
 
     //URL que funcicionó en Insomnia: https://api.spoonacular.com/recipes/complexSearch?apiKey=15b9af73d0d44a19b7cc19073dfcf8a9&query=chicken
     return this.http.get(url);

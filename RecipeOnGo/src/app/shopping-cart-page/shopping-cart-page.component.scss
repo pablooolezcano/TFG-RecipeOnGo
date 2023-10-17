@@ -3,10 +3,6 @@ header {
     padding: 1px;
   }
   
-  .toolbar {
-    text-align: center;
-  }
-  
   .centered-title {
     color: white;
     font-weight: bold;
@@ -73,7 +69,12 @@ header {
     --border-radius: 8px;
     padding: 10px;
   }
-  
+  ion-toolbar.shoppingList-footer-toolbar{
+    --background: white;
+  }  
+  ion-list {
+    text-align: center;
+  }
   .card-content {
     padding: 10px;
     background-color: white;
