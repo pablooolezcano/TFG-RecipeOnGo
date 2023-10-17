@@ -15,11 +15,12 @@ export class SearchRecipeComponent  implements OnInit {
   @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;
   recipes: any = "";
   existResult: boolean = false;
+  user_uid: string | null = "";
 
   constructor(private apiService: SpooncularApiService, private router: Router) { }
 
   ionViewWillEnter(){
-
+    //this.user_uid = localStorage.getItem('user_login_uid');
   }
 
   ngOnInit() {

@@ -16,7 +16,10 @@
     <div class="image-container">
       <img src="assets\logo.png" alt="foto" class="image">
     </div>
+    <ion-label *ngIf="isLogged">Welcome, {{userName}}</ion-label>
+    <br>
     <div id="container">
+      
       <strong>Ready to start cooking Recipes?</strong>
       
       <ul class="nav-list">
