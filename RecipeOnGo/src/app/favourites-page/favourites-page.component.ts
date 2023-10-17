@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { initializeApp } from "firebase/app";
 import { SpooncularApiService } from '../services/spooncular-api.service';
 import { Router, NavigationExtras } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-favourites-page',
   templateUrl: './favourites-page.component.html',
@@ -11,7 +12,7 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class FavouritesPageComponent  implements OnInit {
 
-  user_uid: string | null = localStorage.getItem('user_login_uid');
+  user_uid: string | null = "";
   favouritesIdsList: Array<any> = [];
   favouriteRecipes: Array<any> = [];
   public alertButtons = [
@@ -31,13 +32,19 @@ export class FavouritesPageComponent  implements OnInit {
       },
     },
   ];
-  constructor(private apiService: SpooncularApiService, private router: Router) { }
+  constructor(private apiService: SpooncularApiService, private router: Router, private alertController: AlertController) { }
 
+  ionViewWillEnter(){
+    this.user_uid = localStorage.getItem('user_login_uid');
+    this.getFireDatabaseDoc();
+
+    if(!this.user_uid){
+      this.presentNotLoginAlert();
+    }
+  }
   ngOnInit() {
     const firebaseConfig = environment.firebaseConfig;
     const app = initializeApp(firebaseConfig);
-    
-    this.getFireDatabaseDoc();
   }
 
   async getFireDatabaseDoc(){
@@ -53,6 +60,7 @@ export class FavouritesPageComponent  implements OnInit {
     } catch(error) {
       console.log(error)
     }
+    this.favouriteRecipes = [];
     this.favouritesIdsList.forEach(recipeId => {
       this.apiService.getFavouriteRecipes(recipeId).subscribe(
         (response) => {
@@ -89,5 +97,32 @@ export class FavouritesPageComponent  implements OnInit {
       "ids": this.favouritesIdsList
     }
     updateDoc(docRef, data)
+  }
+
+  async presentNotLoginAlert() {
+    const alert = await this.alertController.create({
+      mode: "ios",
+      header: "Please register or login",
+      subHeader: "This favourites recipes functionality needs you to have an account",
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Alert canceled');
+            this.router.navigateByUrl("/");
+          },
+        },
+        {
+          text: 'Go to Login',
+          role: 'confirm',
+          handler: () => {
+            console.log();
+            this.router.navigateByUrl("/login");
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 }

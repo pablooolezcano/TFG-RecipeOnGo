@@ -2,21 +2,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <ion-header>
-  <header>
+  <!-- <header>
     <div class="toolbar">
       <h1 class="centered-title">Recipe on Go</h1>
     </div>
-  </header>
+  </header> -->
+  <ion-toolbar>
+    <ion-title>Your Shopping List</ion-title>
+  </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
   <section class="home-area">
     <div class="image-container">
       <img src="assets\logo.png" alt="foto" class="image">
     </div>
+    <ion-label *ngIf="isLogged">Welcome, {{userName}}</ion-label>
+    <br>
     <div id="container">
+      
       <strong>Ready to start cooking Recipes?</strong>
-      <p>Start with Ionic <a target="_blank" rel="noopener noreferrer"
-          href="https://ionicframework.com/docs/components">UI Components</a></p>
+      
       <ul class="nav-list">
         <div>
         <ion-button *ngIf="!isLogged" routerLink="/login" routerLinkActive="active">Login</ion-button>
@@ -45,7 +50,7 @@
       <a routerLink="/favourites" routerLinkActive="active"><i class="fas fa-heart"></i></a>
       <a routerLink="/shopping-cart" routerLinkActive="active"><i class="fas fa-shopping-cart"></i></a>
       <a *ngIf="isLogged" routerLink="/profile" routerLinkActive="active"><i class="fas fa-user"></i></a>
-      <a *ngIf="!isLogged" routerLink="/login" routerLinkActive="active"><i class="fas fa-user"></i></a>
+      <!-- <a *ngIf="!isLogged" routerLink="/login" routerLinkActive="active"><i class="fas fa-user"></i></a> -->
     </div>
   </footer>
 </ion-footer>

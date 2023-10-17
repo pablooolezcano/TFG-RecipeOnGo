@@ -57,6 +57,12 @@ export class ProfilePageComponent  implements OnInit {
   constructor(private router: Router, private alertController: AlertController) { }
 
   ionViewWillEnter(){
+    if(localStorage.getItem('user_login_uid') != null){
+      this.user_uid = localStorage.getItem('user_login_uid');
+    }
+    if(!localStorage.getItem('user_login_uid')){
+      this.router.navigateByUrl("/login");
+    }
     const firebaseConfig = environment.firebaseConfig;
 
     const app = initializeApp(firebaseConfig);
@@ -65,12 +71,7 @@ export class ProfilePageComponent  implements OnInit {
   }
   ngOnInit() {
     //esto tengo que ponerlo en el ngOnInit de ionic, y en los demás igual
-    if(localStorage.getItem('user_login_uid') != null){
-      this.user_uid = localStorage.getItem('user_login_uid');
-    }
-    if(!localStorage.getItem('user_login_uid')){
-      this.router.navigateByUrl("/login");
-    }
+    
   }
 
   logOut(){
@@ -106,6 +107,7 @@ export class ProfilePageComponent  implements OnInit {
         console.log("Usuario autenticado:", user.uid);
         deleteUserFirebase(user);
         deleteUserDataFromFire(user.uid);
+        this.router.navigateByUrl("/");
       } else {
         // No hay usuario autenticado
         console.log("No hay usuario autenticado.");

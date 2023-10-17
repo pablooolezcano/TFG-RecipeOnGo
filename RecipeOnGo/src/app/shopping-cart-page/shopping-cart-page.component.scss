@@ -68,6 +68,11 @@ header {
     --border-radius: 10px;
     font-weight: bold;
   }
+  ion-input{
+    --background: rgba(0, 128, 0, 0.2);
+    --border-radius: 8px;
+    padding: 10px;
+  }
   
   .card-content {
     padding: 10px;

@@ -10,7 +10,15 @@ export class FooterComponent  implements OnInit {
   isLogged: boolean = false;
   constructor(private router: Router) { }
 
+  ionViewWillEnter(){
+    this.isLogged = false;
+    if(localStorage.getItem('user_login_uid')){
+      this.isLogged = true;
+    }
+  }
+
   ngOnInit() {
+    this.isLogged = false;
     if(localStorage.getItem('user_login_uid')){
       this.isLogged = true;
     }
