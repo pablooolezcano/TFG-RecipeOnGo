@@ -6,12 +6,10 @@
 <ion-content>
     <div *ngFor="let item of shoppingList">
       <ion-card *ngIf="item != ''"> 
-        
-        <div  class="card-content">
+        <ion-item lines="none">
           <ion-card-title color="medium">{{item}}</ion-card-title>
-          <!-- <h2 class="card-title">{{item}}</h2> -->
-          <ion-icon name="close-circle" size="large" (click)="deleteListItem(item)"></ion-icon>
-        </div>
+          <ion-icon name="close-circle" size="large" slot="end" (click)="deleteListItem(item)"></ion-icon>
+        </ion-item>
       </ion-card>
     </div> 
   
@@ -26,9 +24,10 @@
               <ion-input 
               placeholder="rice" 
               [value]="inputText"
+              [clearInput]="true"
               (ionInput)="onInputText($event)"
               #ionInputEl
-              [counter]="true" maxlength="20"></ion-input>
+              [counter]="true" maxlength="50"></ion-input>
             </ion-item>
 
             <ion-list class="toolbar">
