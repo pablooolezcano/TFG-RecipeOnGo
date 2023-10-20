@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
 import { getFirestore, doc,getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { IonToggle } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
@@ -28,7 +30,7 @@ export class RecipeDetailComponent  implements OnInit {
   isFavorite: boolean = false;
   user_uid: string | null = localStorage.getItem('user_login_uid');
 
-  constructor(private router: Router, private apiService: SpooncularApiService) { }
+  constructor(private router: Router, private apiService: SpooncularApiService, private alertController: AlertController) { }
 
   ionViewWillEnter(){
     console.log("testtt IonViewEnter");
@@ -93,6 +95,7 @@ export class RecipeDetailComponent  implements OnInit {
           }
       }
     } catch(error) {
+      this.presentErrorGetFirebaseData();
       console.log(error)
     }
   }
@@ -137,5 +140,16 @@ export class RecipeDetailComponent  implements OnInit {
       }
     }
   }
-
+  async presentErrorGetFirebaseData() {
+    const alert = await this.alertController.create({
+      header: 'Data access error',
+      subHeader: 'An error has occurred while accessing your data in the database',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+        },
+      },],
+    });
+    await alert.present();
+  }
 }

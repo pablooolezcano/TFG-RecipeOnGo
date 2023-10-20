@@ -4,6 +4,7 @@ import {getAuth, createUserWithEmailAndPassword, updateProfile, onAuthStateChang
 import { environment } from 'src/environments/environment';
 import { Router} from '@angular/router';
 import type { IonInput } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register-page',
@@ -19,7 +20,7 @@ export class RegisterPageComponent  implements OnInit {
   @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;
   @ViewChild('ionInputE2', { static: true }) ionInputE2!: IonInput;
   @ViewChild('ionInputE3', { static: true }) ionInputE3!: IonInput;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private alertController: AlertController) { }
 
   ionViewWillEnter(){
     let uid = localStorage.getItem('user_login_uid');
@@ -73,12 +74,16 @@ export class RegisterPageComponent  implements OnInit {
         onAuthStateChanged(auth, (user) => {
           if (user) {
             // El usuario está autenticado
+            if(this.registerName == ""){
+              this.registerName = "Your Name";
+            }
             updateProfile(user, {
               displayName: this.registerName
             }).then(() => {
               console.log("Profile created! (name added)");
               // ...
             }).catch((error) => {
+              this.presentErrorRegister();
               console.log("An error occurred while updating profile name");
               // ...
             });
@@ -92,10 +97,23 @@ export class RegisterPageComponent  implements OnInit {
         this.router.navigateByUrl("/login");
       } catch (error) {
         // Ocurrió un error durante el registro
+        this.presentErrorRegister();
         console.error("Error al registrar usuario:", error);
       }
     };
     registerUser();
   }
 
+  async presentErrorRegister() {
+    const alert = await this.alertController.create({
+      header: 'Error trying to Register',
+      subHeader: 'Please try again',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+        },
+      },],
+    });
+    await alert.present();
+  }
 }

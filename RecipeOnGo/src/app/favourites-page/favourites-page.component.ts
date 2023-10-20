@@ -58,6 +58,7 @@ export class FavouritesPageComponent  implements OnInit {
         console.log(this.favouritesIdsList)
       }
     } catch(error) {
+      this.presentErrorGetFirebaseData();
       console.log(error)
     }
     this.favouriteRecipes = [];
@@ -122,6 +123,19 @@ export class FavouritesPageComponent  implements OnInit {
           },
         },
       ],
+    });
+    await alert.present();
+  }
+
+  async presentErrorGetFirebaseData() {
+    const alert = await this.alertController.create({
+      header: 'Data access error',
+      subHeader: 'An error has occurred while accessing your data in the database',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+        },
+      },],
     });
     await alert.present();
   }

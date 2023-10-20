@@ -17,7 +17,7 @@
     <!-- <input type="email" id="login-email" class="form-control" placeholder="Introduzca email"
                   name="username"> -->
     <ion-item lines="none">
-      <ion-input placeholder="Introduzca email" [value]="loginEmail" (ionInput)="onInputEmail($event)"
+      <ion-input placeholder="Introduzca email" type="email" [value]="loginEmail" (ionInput)="onInputEmail($event)"
         #ionInputEl></ion-input>
     </ion-item>
     <br>
@@ -25,7 +25,7 @@
     <!-- <input type="password" id="login-passwd" class="form-control" placeholder="Contraseña"
                   name="password"> -->
     <ion-item lines="none">
-      <ion-input placeholder="Contraseña" [value]="loginPasswd" (ionInput)="onInputPassword($event)"
+      <ion-input placeholder="Contraseña" type="password" [value]="loginPasswd" (ionInput)="onInputPassword($event)"
         #ionInputE2></ion-input>
     </ion-item>
     <br>

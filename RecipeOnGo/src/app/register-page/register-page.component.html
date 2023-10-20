@@ -20,7 +20,7 @@
                     name="username"> -->
                     <ion-item lines="none">
                       <ion-input 
-                      placeholder="Introduzca email" 
+                      placeholder="Name" 
                       [value]="registerName"
                       (ionInput)="onInputName($event)"
                       #ionInputEl></ion-input>
@@ -33,6 +33,7 @@
                     name="user_email"> -->
                     <ion-item lines="none">
                       <ion-input 
+                      type="email"
                       placeholder="Introduzca email" 
                       [value]="registerEmail"
                       (ionInput)="onInputEmail($event)"
@@ -46,7 +47,8 @@
                     name="password"> -->
                     <ion-item lines="none">
                       <ion-input 
-                      placeholder="Introduzca email" 
+                      type="password"
+                      placeholder="Contraseña" 
                       [value]="registerPasswd"
                       (ionInput)="onInputPassword($event)"
                       #ionInputE3></ion-input>

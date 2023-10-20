@@ -121,6 +121,7 @@ export class ProfilePageComponent  implements OnInit {
         await deleteDoc(doc(db, "shopping-lists", "" + this.user_uid));
       } catch (error) {
         console.log(error);
+        this.presentErrorDeletingAccount();
       }
     };
 
@@ -133,6 +134,7 @@ export class ProfilePageComponent  implements OnInit {
       } catch (error) {
         // Ocurrió un error durante el inicio de sesión
         console.error("Error al iniciar sesión:", error);
+        this.presentErrorDeletingAccount();
       }
     };
   }
@@ -145,16 +147,15 @@ export class ProfilePageComponent  implements OnInit {
     const auth = getAuth();
 
     if(data[0] != ''){
+      this.toastMessage = "user name";
       updateProfile(this.currentUser, {
             displayName: data[0]
           }).then(() => {
-            this.toastMessage = "user name";
             console.log("Profile updated!");
             this.presentSuccessUpdateToast();
-            // ...
           }).catch((error) => {
             console.log("An error occurred while updating profile name");
-            // ...
+            this.presentErrorChangeData();
           });
     }
   }
@@ -166,16 +167,15 @@ export class ProfilePageComponent  implements OnInit {
     if (data[0] != '') {
       console.log(data[1]);
       onAuthStateChanged(auth, (user) => {
+        this.toastMessage = "email";
         if (user) {
           // El usuario está autenticado
           updateEmail(user, data[0]).then(() => {
-            this.toastMessage = "email";
             this.presentSuccessUpdateToast();
             console.log("Email updated!");
-            // ...
           }).catch((error) => {
             console.log("An error occurred while updating email");
-            // ...
+            this.presentErrorChangeData();
           });
           console.log("Usuario autenticado:", this.currentUser);
         } else {
@@ -193,15 +193,16 @@ export class ProfilePageComponent  implements OnInit {
 
 
     onAuthStateChanged(auth, (user) => {
+      this.toastMessage = "password";
       if (user) {
         // El usuario está autenticado
         updatePassword(user, data).then(() => {
           console.log("Contraseña cambiada correctamente")
-          this.toastMessage = "password";
           this.presentSuccessUpdateToast();
         }).catch((error) => {
           // An error ocurred
-          // ...
+          console.log(error);
+          this.presentErrorChangeData();
         });
         console.log("Usuario autenticado:", this.currentUser);
       } else {
@@ -233,8 +234,7 @@ export class ProfilePageComponent  implements OnInit {
           }
           
         }).catch((error) => {
-          // An error ocurred
-          // ...
+          this.presentErrorAuthenticate();
         });
         console.log("Usuario autenticado:", this.currentUser);
       } else {
@@ -422,6 +422,43 @@ export class ProfilePageComponent  implements OnInit {
           }else{
             this.ionViewWillEnter();
           }
+        },
+      },],
+    });
+    await alert.present();
+  }
+
+  async presentErrorAuthenticate() {
+    const alert = await this.alertController.create({
+      header: 'Error trying to Authenticate',
+      subHeader: 'Wrong email or password',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+        },
+      },],
+    });
+    await alert.present();
+  }
+  async presentErrorChangeData() {
+    const alert = await this.alertController.create({
+      header: 'An Error ocurred trying to change your ' + this.toastMessage,
+      subHeader: 'Please try again',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+        },
+      },],
+    });
+    await alert.present();
+  }
+  async presentErrorDeletingAccount() {
+    const alert = await this.alertController.create({
+      header: 'An Error ocurred trying to delete your account and your associate data',
+      subHeader: 'Please try again',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
         },
       },],
     });

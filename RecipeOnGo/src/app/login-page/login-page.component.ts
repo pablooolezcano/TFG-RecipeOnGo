@@ -4,6 +4,7 @@ import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import { environment } from 'src/environments/environment';
 import { Router} from '@angular/router';
 import type { IonInput } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login-page',
@@ -16,7 +17,7 @@ export class LoginPageComponent  implements OnInit {
   loginPasswd : string = "";
   @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;
   @ViewChild('ionInputE2', { static: true }) ionInputE2!: IonInput;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private alertController: AlertController) { }
 
   ionViewWillEnter(){
     let uid = localStorage.getItem('user_login_uid');
@@ -64,10 +65,23 @@ export class LoginPageComponent  implements OnInit {
         this.router.navigateByUrl("/");
       } catch (error) {
         // Ocurrió un error durante el inicio de sesión
+        this.presentErrorLogin();
         console.error("Error al iniciar sesión:", error);
       }
     };
     
     loginUser();
+  }
+  async presentErrorLogin() {
+    const alert = await this.alertController.create({
+      header: 'Error trying to Log In',
+      subHeader: 'Wrong email or password',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+        },
+      },],
+    });
+    await alert.present();
   }
 }

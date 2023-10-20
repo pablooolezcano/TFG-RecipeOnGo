@@ -12,26 +12,39 @@
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-  <section class="home-area">
-    <div class="image-container">
-      <img src="assets\logo.png" alt="foto" class="image">
-    </div>
-    <ion-label *ngIf="isLogged">Welcome, {{userName}}</ion-label>
-    <br>
-    <div id="container">
+
+  <div class="image-container">
+
+    <ion-img src="assets\logo.png" alt="foto" class="image"></ion-img>
+  </div>
+    
+      <ion-list class="custom-ion-list">
+          <ion-label *ngIf="isLogged">Welcome, {{userName}}</ion-label>
+          <ion-title class="custom">Ready to start cooking Recipes?</ion-title>
+      </ion-list>
       
-      <strong>Ready to start cooking Recipes?</strong>
       
-      <ul class="nav-list">
+      <ion-list *ngIf="!isLogged" class="custom-ion-list">
+        <ion-button routerLink="/login" routerLinkActive="active">Login</ion-button>
+        <ion-button routerLink="/register" routerLinkActive="active">Register</ion-button>
+      </ion-list>
+      <ion-list class="custom-ion-list">
+        <ion-button *ngIf="!isLogged" routerLink="/search-recipe" routerLinkActive="active">Skip and start cooking
+          <ion-icon name="search-outline" slot="end"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="isLogged" routerLink="/search-recipe" routerLinkActive="active">Start cooking
+          <ion-icon name="search-outline" slot="end"></ion-icon>
+        </ion-button>
+      </ion-list>
+
+      <!-- <ul class="nav-list">
         <div>
-        <ion-button *ngIf="!isLogged" routerLink="/login" routerLinkActive="active">Login</ion-button>
-        <ion-button *ngIf="!isLogged" routerLink="/register" routerLinkActive="active">Register</ion-button>
+        
         </div>
         <div>
-          <ion-button routerLink="/search-recipe" routerLinkActive="active">Skip and start cooking</ion-button>
+          
         </div>
-      </ul>
-    </div>
+      </ul> -->
         <!-- Este boton de abajo hace que la imagen de arriba se superponga al header, pa tenerlo en cuenta -->
         <!-- <li class="nav-item"><button type="button" id="large-homeButton"><a routerLink="/shopping-cart" class="nav-link" routerLinkActive="active">Shopping cart</a></button></li> -->
       <!-- <ion-list>
@@ -39,8 +52,6 @@
           <ion-button><a routerLink="/register" class="nav-link" routerLinkActive="active"></a>Register</ion-button>
           <ion-button><a routerLink="/search-recipe" class="nav-link" routerLinkActive="active"></a>Skip and start cooking</ion-button>
       </ion-list> -->
-
-  </section>
 </ion-content>
 <ion-footer>
   <footer>
