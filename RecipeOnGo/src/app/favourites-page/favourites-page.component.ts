@@ -14,7 +14,7 @@ export class FavouritesPageComponent  implements OnInit {
 
   user_uid: string | null = "";
   favouritesIdsList: Array<any> = [];
-  favouriteRecipes: Array<any> = [];
+  favouriteRecipes: any = [];
   public alertButtons = [
     {
       text: 'Cancel',
@@ -62,14 +62,21 @@ export class FavouritesPageComponent  implements OnInit {
       console.log(error)
     }
     this.favouriteRecipes = [];
-    this.favouritesIdsList.forEach(recipeId => {
-      this.apiService.getFavouriteRecipes(recipeId).subscribe(
-        (response) => {
-          console.log(response);
-          this.favouriteRecipes.push(response);
-        }
-      )
-    });
+    // this.favouritesIdsList.forEach(recipeId => {
+    //   this.apiService.getFavouriteRecipes(recipeId).subscribe(
+    //     (response) => {
+    //       console.log(response);
+    //       this.favouriteRecipes.push(response);
+    //     }
+    //   )
+    // });
+
+    this.apiService.getFavouriteRecipes(this.favouritesIdsList.toString()).subscribe(
+          (response) => {
+            console.log(response);
+            //this.favouriteRecipes.push(response);
+            this.favouriteRecipes = response;
+          });
 
     console.log(this.favouriteRecipes);
   }
