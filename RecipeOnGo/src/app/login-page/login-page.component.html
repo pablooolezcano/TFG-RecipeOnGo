@@ -12,52 +12,34 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <section class="profile-authentication-area">
-    <ion-card>
-      <div class="container">
-        <div class="row">
-          <div class="login-container">
-            <div class="login-form">
+  <ion-card>
+    <ion-label id="email">Introduzca email</ion-label>
+    <!-- <input type="email" id="login-email" class="form-control" placeholder="Introduzca email"
+                  name="username"> -->
+    <ion-item lines="none">
+      <ion-input placeholder="Introduzca email" type="email" [value]="loginEmail" (ionInput)="onInputEmail($event)"
+        #ionInputEl></ion-input>
+    </ion-item>
+    <br>
+    <ion-label id="password">Contraseña</ion-label>
+    <!-- <input type="password" id="login-passwd" class="form-control" placeholder="Contraseña"
+                  name="password"> -->
+    <ion-item lines="none">
+      <ion-input placeholder="Contraseña" type="password" [value]="loginPasswd" (ionInput)="onInputPassword($event)"
+        #ionInputE2></ion-input>
+    </ion-item>
+    <br>
+    <ion-list>
+      <ion-button (click)="login()">LOGIN</ion-button>
+      <br><br>
+      <ion-label>Not registered yet?</ion-label>
+      <br>
+      <ion-button routerLink="/register" routerLinkActive="active">Register now</ion-button>
+    </ion-list>
+    <!-- <div *ngIf="errorMessage" class="alert alert-danger mt-2" role="alert">
+              {{errorMessage}}
+            </div> -->
 
-
-                  <ion-label id="email">Introduzca email</ion-label>
-                  <!-- <input type="email" id="login-email" class="form-control" placeholder="Introduzca email"
-                    name="username"> -->
-                    <ion-item lines="none">
-                      <ion-input 
-                      placeholder="Introduzca email" 
-                      [value]="loginEmail"
-                      (ionInput)="onInputEmail($event)"
-                      #ionInputEl></ion-input>
-                    </ion-item>
-              
-                <br>
-                  <ion-label id="password">Contraseña</ion-label>
-                  <!-- <input type="password" id="login-passwd" class="form-control" placeholder="Contraseña"
-                    name="password"> -->
-                    <ion-item lines="none">
-                      <ion-input 
-                      placeholder="Contraseña" 
-                      [value]="loginPasswd"
-                      (ionInput)="onInputPassword($event)"
-                      #ionInputE2></ion-input>
-                    </ion-item>
-                <br>
-                <div class="button-container">
-                  <ion-button (click)="login()">LOGIN</ion-button>
-                </div>
-            </div>
-            <p>Not registered yet?</p>
-            <div class="button-container">
-              <ion-button routerLink="/register" routerLinkActive="active">Register now</ion-button>
-            </div>
-            <!-- <div *ngIf="errorMessage" class="alert alert-danger mt-2" role="alert">
-                {{errorMessage}}
-              </div> -->
-          </div>
-        </div>
-      </div>
-    </ion-card>
-  </section>
+  </ion-card>
 </ion-content>
 <app-footer></app-footer>

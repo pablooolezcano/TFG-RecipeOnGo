@@ -15,15 +15,31 @@ export class SearchRecipeComponent  implements OnInit {
   @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;
   recipes: any = "";
   existResult: boolean = false;
+  existRandom: boolean = true;
   user_uid: string | null = "";
 
   constructor(private apiService: SpooncularApiService, private router: Router) { }
 
   ionViewWillEnter(){
     //this.user_uid = localStorage.getItem('user_login_uid');
+
+    if(this.existRandom == true){
+      this.apiService.getRandomRecipes().subscribe(
+        (response) => {
+          this.recipes = response;
+          let randomRecipes = this.recipes['recipes'];
+          this.recipes = randomRecipes;
+          this.existResult = true;
+          this.existRandom = false;
+        });
+    }
+  }
+  ionViewWillLeave(){
+    //this.existRandom = false;
   }
 
   ngOnInit() {
+    
     
     //console.log(this.apiService.getRecipes().pipe());
   }
@@ -47,7 +63,7 @@ export class SearchRecipeComponent  implements OnInit {
     // let searchBarText = this.mySearchBar.value;
     // console.log(searchBarText);
 
-    let inputText = document.getElementById("search_text") as HTMLInputElement;
+    //let inputText = document.getElementById("search_text") as HTMLInputElement;
     //this.searchText = inputText.value;
     this.searchText = event.detail.value;
     console.log(typeof this.searchText);

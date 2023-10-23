@@ -14,7 +14,7 @@ export class FavouritesPageComponent  implements OnInit {
 
   user_uid: string | null = "";
   favouritesIdsList: Array<any> = [];
-  favouriteRecipes: Array<any> = [];
+  favouriteRecipes: any = [];
   public alertButtons = [
     {
       text: 'Cancel',
@@ -58,17 +58,25 @@ export class FavouritesPageComponent  implements OnInit {
         console.log(this.favouritesIdsList)
       }
     } catch(error) {
+      this.presentErrorGetFirebaseData();
       console.log(error)
     }
     this.favouriteRecipes = [];
-    this.favouritesIdsList.forEach(recipeId => {
-      this.apiService.getFavouriteRecipes(recipeId).subscribe(
-        (response) => {
-          console.log(response);
-          this.favouriteRecipes.push(response);
-        }
-      )
-    });
+    // this.favouritesIdsList.forEach(recipeId => {
+    //   this.apiService.getFavouriteRecipes(recipeId).subscribe(
+    //     (response) => {
+    //       console.log(response);
+    //       this.favouriteRecipes.push(response);
+    //     }
+    //   )
+    // });
+
+    this.apiService.getFavouriteRecipes(this.favouritesIdsList.toString()).subscribe(
+          (response) => {
+            console.log(response);
+            //this.favouriteRecipes.push(response);
+            this.favouriteRecipes = response;
+          });
 
     console.log(this.favouriteRecipes);
   }
@@ -122,6 +130,19 @@ export class FavouritesPageComponent  implements OnInit {
           },
         },
       ],
+    });
+    await alert.present();
+  }
+
+  async presentErrorGetFirebaseData() {
+    const alert = await this.alertController.create({
+      header: 'Data access error',
+      subHeader: 'An error has occurred while accessing your data in the database',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+        },
+      },],
     });
     await alert.present();
   }

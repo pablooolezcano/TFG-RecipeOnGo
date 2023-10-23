@@ -79,8 +79,15 @@ header {
   }
 
 ion-card {
-  margin-top: 20px;
+  padding: 10px;
   --background: white;
+}
+ion-card-title {
+  --color: rgb(92, 173, 64);
+  font-weight: bold;
+}
+ion-image{
+  border-radius: 8px;
 }
 ion-button{
   --background: rgb(92, 173, 64);

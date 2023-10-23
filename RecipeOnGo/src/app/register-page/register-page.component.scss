@@ -66,15 +66,24 @@
     color: white;
     font-weight: bold;
   }
-  ion-card{
-    --background: white;
-  }
-  ion-button{
-    --background: rgb(92, 173, 64);
-    --border-radius: 10px;
-    font-weight: bold;
-  }
-  ion-input{
-    --background: rgba(0, 128, 0, 0.2);
-    --border-radius: 8px;
-  }
+    ion-card {
+      margin-top: 40%;
+      --background: white;
+      padding: 20px;
+      align-items: center;
+    }
+  
+    ion-button {
+      --background: rgb(92, 173, 64);
+      --border-radius: 10px;
+      font-weight: bold;
+    }
+  
+    ion-input {
+      --background: rgba(0, 128, 0, 0.2);
+      --border-radius: 8px;
+    }
+  
+    ion-list {
+      text-align: center;
+    }

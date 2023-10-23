@@ -61,6 +61,7 @@ export class ShoppingCartPageComponent  implements OnInit {
         console.log(this.shoppingList)
       }
     } catch(error) {
+      this.presentErrorGetFirebaseData();
       console.log(error)
     }
   }
@@ -149,6 +150,18 @@ export class ShoppingCartPageComponent  implements OnInit {
           },
         },
       ],
+    });
+    await alert.present();
+  }
+  async presentErrorGetFirebaseData() {
+    const alert = await this.alertController.create({
+      header: 'Data access error',
+      subHeader: 'An error has occurred while accessing your data in the database',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+        },
+      },],
     });
     await alert.present();
   }

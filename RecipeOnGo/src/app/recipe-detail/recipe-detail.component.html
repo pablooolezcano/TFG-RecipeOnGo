@@ -12,34 +12,43 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <head>
+  <!-- <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  </head>
-  <section class="search-area ptb-100">
+  </head> -->
+  <!-- <section class="search-area ptb-100">
+  </section> -->
+  <ion-card>
+        <!-- <div class="form-group">
+          <label id="name">Detalle Receta</label>
+        </div> -->
+          <div class="card-content">
+              <ion-img src={{imageUrl}} alt="Imagen" *ngIf="imageUrl != 'https://spoonacular.com/recipeImages/624304-312x231.jpg'"></ion-img>
 
-    <ion-card>
-      <div class="search-container">
-          <!-- <div class="form-group">
-            <label id="name">Detalle Receta</label>
-          </div> -->
-            <div *ngIf="imageUrl!= ''" class="card-content">
-              <div class="image-container">
-                <img src={{imageUrl}} alt="Imagen">
-              </div>
-              <div class="fav-check-box-container" *ngIf="user_uid">
-                <ion-toggle #myToggle (click)="toggleFavorite()">Mark as favourite:</ion-toggle>
-              </div>
-              <!-- <h2 class="card-title">{{recipeTitle}}</h2> -->
-              <h5 class="card-title">Used ingredients</h5>
-              <p *ngFor="let item of usedIngredients">{{item.original}}</p>
-              <h5 class="card-title">Missing ingredients</h5>
-              <p *ngFor="let item of missingIngredients">{{item.original}}</p>
-              <h5 class="card-title">Recipe Intructions</h5>
-              <p class="card-p-text" *ngFor="let item of recipeIntructions">{{item.number}}. {{item.step}}</p>
-            </div>
-      </div>
-    </ion-card>
+              <ion-card-header *ngIf="imageUrl == 'https://spoonacular.com/recipeImages/624304-312x231.jpg'">
+                <ion-card-title>{{recipeTitle}}</ion-card-title>
+              </ion-card-header>
+              <ion-toggle #myToggle *ngIf="user_uid" (click)="toggleFavorite()">Mark as favourite:</ion-toggle>
+              <ion-card-content>
 
-  </section>
+              </ion-card-content>
+            <ion-list *ngIf="navFromFavs">
+
+              <ion-title class="custom">Extended ingredients</ion-title>
+              <p class="card-p-text" *ngFor="let item of extendedIngredients">{{item.original}}</p>
+            </ion-list>
+            <ion-list *ngIf="!navFromFavs">
+
+              <ion-title class="custom">Used ingredients</ion-title>
+              <p class="card-p-text" *ngFor="let item of usedIngredients">{{item.original}}</p>
+              <ion-title class="custom">Missing ingredients</ion-title>
+              <p class="card-p-text" *ngFor="let item of missingIngredients">{{item.original}}</p>
+            </ion-list>
+
+
+            <ion-title class="custom">Recipe Intructions</ion-title>
+            <p class="card-p-text" *ngFor="let item of recipeIntructions">{{item.number}}. {{item.step}}</p>
+          </div>
+
+  </ion-card>
 </ion-content>
 <app-footer></app-footer>

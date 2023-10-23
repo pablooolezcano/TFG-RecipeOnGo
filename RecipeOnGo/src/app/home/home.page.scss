@@ -23,10 +23,9 @@ header {
 }
 
 .image-container {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  position: relative;
-  z-index: 1;
+  text-align: center;
+  align-items: center;
+  
 }
 
 .image {
@@ -129,4 +128,15 @@ ion-button{
   --background: rgb(92, 173, 64);
   --border-radius: 10px;
   font-weight: bold;
+}
+ion-title.custom{
+  margin-bottom: 10px;
+  --color: rgb(92, 173, 64);
+  font-weight: bold;
+}
+ion-list.custom-ion-list{
+  text-align: center;
+}
+ion-card{
+  padding: 10px;
 }

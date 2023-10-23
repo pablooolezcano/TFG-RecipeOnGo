@@ -1,72 +1,55 @@
 <ion-header>
 
-    <!-- <div class="toolbar">
+  <!-- <div class="toolbar">
       <h1 class="centered-title">Profile Page</h1>
     </div> -->
-    <ion-toolbar mode="md">
-      <ion-title>Profile Page</ion-title>
-    </ion-toolbar>
+  <ion-toolbar mode="md">
+    <ion-title>Profile Page</ion-title>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-  <section class="profile-authentication-area">
-    <ion-card>
+  <ion-card class="custom">
+    <ion-card-title>User information</ion-card-title>
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Name</ion-label>
+      </ion-item-divider>
+      <ion-item lines="none">
+        <ion-card-title id="email">{{userName}}</ion-card-title>
+        <ion-icon name="pencil-outline" slot="end" (click)="presentChangeNameAlert()"></ion-icon>
+      </ion-item>
+      <ion-item-divider>
+        <ion-label id="email">Email</ion-label>
+      </ion-item-divider>
+      <ion-item lines="none">
+        <ion-card-title id="email">{{userEmail}}</ion-card-title>
+        <ion-icon name="pencil-outline" slot="end" (click)="presentReAuthEmailAlert()"></ion-icon>
+      </ion-item>
+    </ion-item-group>
 
-          <div class="register-container">
+    <ion-list>
 
-              <ion-card-title>User information</ion-card-title>
-              <ion-item-group>
-                <ion-item-divider>
-                  <ion-label>Name</ion-label>
-                </ion-item-divider>
-                <ion-item lines="none">
-                  <ion-card-title id="email">{{userName}}</ion-card-title>
-                    <ion-icon name="pencil-outline" slot="end" (click)="presentChangeNameAlert()"></ion-icon>
-                </ion-item>
-                <ion-item-divider>
-                  <ion-label id="email">Email</ion-label>
-                </ion-item-divider>
-                <ion-item lines="none">
-                  <ion-card-title id="email">{{userEmail}}</ion-card-title>
-                    <ion-icon name="pencil-outline" slot="end" (click)="presentReAuthEmailAlert()"></ion-icon>
-                </ion-item>
-              </ion-item-group>
+      <ion-button id="change-passwd-button" (click)="presentReAuthPasswordAlert()">Change Password</ion-button>
+    </ion-list>
 
-              <div class="button-container">
-                <ion-button id="change-passwd-button" (click)="presentReAuthPasswordAlert()">Change Password</ion-button>   
-              </div>
+  </ion-card>
+  <ion-card>
+    <ion-list>
+      <ion-label>Pulsa Para cerrar sesión</ion-label>
+      <br>
+      <ion-button id="log-out-button" color="danger">Log Out</ion-button>
+      <br>
+      <ion-label>Pulse para eliminar su cuenta</ion-label>
+      <br>
+      <ion-button id="delete-account-button" color="danger">Delete Account</ion-button>
+    </ion-list>
 
-          </div>
-
-    </ion-card>
-    <ion-card>
-          <div class="register-container">
-                <div class="button-container">
-                  <ion-label>Pulsa Para cerrar sesión</ion-label>
-                  <ion-button id="log-out-button" color="danger">Log Out</ion-button>
-                  <ion-label>Pulse para eliminar su cuenta</ion-label>
-                  <ion-button id="delete-account-button" color="danger">Delete Account</ion-button>
-              
-                  <ion-alert 
-              class="custom-alert"
-              mode="ios"
-              trigger="log-out-button"
-              header="Alert"
-              subHeader="Important message"
-              message="Are you sure about logging out?"
-              [buttons]="alertButtons1">
-              </ion-alert>
-              <ion-alert 
-              class="custom-alert"
-              mode="ios"
-              trigger="delete-account-button"
-              header="Alert"
-              subHeader="Important message"
-              message="Are you sure about deleting your account?"
-              [buttons]="alertButtons2">
-              </ion-alert>
-                </div>
-          </div>
-    </ion-card>
-  </section>
+    <ion-alert class="custom-alert" mode="ios" trigger="log-out-button" header="Alert" subHeader="Important message"
+      message="Are you sure about logging out?" [buttons]="alertButtons1">
+    </ion-alert>
+    <ion-alert class="custom-alert" mode="ios" trigger="delete-account-button" header="Alert"
+      subHeader="Important message" message="Are you sure about deleting your account?" [buttons]="alertButtons2">
+    </ion-alert>
+  </ion-card>
 </ion-content>
 <app-footer></app-footer>
