@@ -15,7 +15,7 @@ export class SearchRecipeComponent  implements OnInit {
   @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;
   recipes: any = "";
   existResult: boolean = false;
-  existRandom: boolean = false;
+  existRandom: boolean = true;
   user_uid: string | null = "";
 
   constructor(private apiService: SpooncularApiService, private router: Router) { }
@@ -23,19 +23,19 @@ export class SearchRecipeComponent  implements OnInit {
   ionViewWillEnter(){
     //this.user_uid = localStorage.getItem('user_login_uid');
 
-    if(this.existRandom == false){
+    if(this.existRandom == true){
       this.apiService.getRandomRecipes().subscribe(
         (response) => {
           this.recipes = response;
           let randomRecipes = this.recipes['recipes'];
           this.recipes = randomRecipes;
           this.existResult = true;
-          this.existRandom = true;
+          this.existRandom = false;
         });
     }
   }
   ionViewWillLeave(){
-    this.existRandom = false;
+    //this.existRandom = false;
   }
 
   ngOnInit() {
