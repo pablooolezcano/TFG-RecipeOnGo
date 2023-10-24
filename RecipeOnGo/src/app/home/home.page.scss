@@ -126,6 +126,7 @@ footer {
 }
 ion-button{
   --background: rgb(92, 173, 64);
+  --background-activated: #7cc558;
   --border-radius: 10px;
   font-weight: bold;
 }
@@ -136,7 +137,9 @@ ion-title.custom{
 }
 ion-list.custom-ion-list{
   text-align: center;
+  background-color: white;
 }
+
 ion-card{
   padding: 10px;
 }

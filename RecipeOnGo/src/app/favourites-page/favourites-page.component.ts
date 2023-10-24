@@ -109,7 +109,6 @@ export class FavouritesPageComponent  implements OnInit {
 
   async presentNotLoginAlert() {
     const alert = await this.alertController.create({
-      mode: "ios",
       header: "Please register or login",
       subHeader: "This favourites recipes functionality needs you to have an account",
       buttons: [

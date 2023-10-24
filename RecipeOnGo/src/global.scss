@@ -42,6 +42,12 @@ ion-back-button{
 ion-title{
     //font-weight: bold
 }
+ion-content{
+    --background: white;
+}
+ion-input{
+    --border-color: white;
+}
 
 .custom-alert .alert-button-group {
     padding: 8px;

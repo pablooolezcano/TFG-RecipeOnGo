@@ -18,9 +18,9 @@
   <ion-card>
     <ion-card-content>
 
-            <ion-label id="name">Escriba los alimentos</ion-label>
+            <ion-label id="name" color="medium">Escriba los alimentos</ion-label>
             <!-- <input type="text" id="input_text" class="form-control" placeholder="Rice"> -->
-            <ion-item lines="none" mode="md">
+            <ion-item lines="none">
               <ion-input 
               placeholder="rice" 
               [value]="inputText"
@@ -41,7 +41,6 @@
               </ion-button>
               <ion-alert 
               class="custom-alert"
-              mode="ios"
               trigger="delete-list-button"
               header="Alert"
               subHeader="Important message"

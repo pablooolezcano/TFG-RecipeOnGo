@@ -245,7 +245,6 @@ export class ProfilePageComponent  implements OnInit {
   }
   async presentReAuthEmailAlert() {
     const alert = await this.alertController.create({
-      mode: "ios",
       header: "Please enter your credentials",
       subHeader: "In order to be able to modify your email",
       buttons: [
@@ -283,7 +282,6 @@ export class ProfilePageComponent  implements OnInit {
   }
   async presentReAuthPasswordAlert() {
     const alert = await this.alertController.create({
-      mode: "ios",
       header: "Please enter your credentials",
       subHeader: "In order to be able to modify your password",
       buttons: [
@@ -321,7 +319,6 @@ export class ProfilePageComponent  implements OnInit {
   }
   async presentChangePasswdAlert() {
     const alert = await this.alertController.create({
-      mode: "ios",
       header: "Please enter your new password",
       buttons: [
         {
@@ -351,7 +348,6 @@ export class ProfilePageComponent  implements OnInit {
   }
   async presentChangeNameAlert() {
     const alert = await this.alertController.create({
-      mode: "ios",
       header: "Please enter your updated name",
       buttons: [
         {
@@ -381,7 +377,6 @@ export class ProfilePageComponent  implements OnInit {
   }
   async presentChangeEmailAlert() {
     const alert = await this.alertController.create({
-      mode: "ios",
       header: "Please enter your updated email",
       buttons: [
         {

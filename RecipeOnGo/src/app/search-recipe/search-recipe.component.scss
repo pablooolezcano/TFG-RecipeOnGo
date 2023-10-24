@@ -74,10 +74,6 @@ header {
 #search_text{
   margin-top: 10px;
 }
-.form-group label {
-    
-  }
-
 ion-card {
   padding: 10px;
   --background: white;
@@ -122,6 +118,9 @@ ion-fab-button{
     --background: rgba(0, 128, 0, 0.2);
     --border-radius: 8px;
     margin-right: 10px;
+  }
+  ion-label{
+    color: black;
   }
 .card-content {
   padding: 10px;

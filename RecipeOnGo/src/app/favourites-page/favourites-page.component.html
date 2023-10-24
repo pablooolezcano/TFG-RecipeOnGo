@@ -11,12 +11,12 @@
 <ion-content>
   <!-- <section class="favourites-area ptb-100">
   </section> -->
-        <ion-card *ngFor="let item of favouriteRecipes" (click)="goDetail(item)">
-          <ion-img src={{item.image}} alt="Imagen"></ion-img>
-            <ion-card-header>
-              <ion-card-title>{{item.title}}</ion-card-title>
-            </ion-card-header>
-        </ion-card>
+    <ion-card *ngFor="let item of favouriteRecipes" (click)="goDetail(item)">
+      <ion-img src={{item.image}} alt="Imagen"></ion-img>
+        <ion-card-header>
+          <ion-card-title>{{item.title}}</ion-card-title>
+        </ion-card-header>
+    </ion-card>
   
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button>
@@ -31,7 +31,6 @@
       </ion-fab-button>
       <ion-alert 
               class="custom-alert"
-              mode="ios"
               trigger="delete-fav-list-button"
               header="Alert"
               subHeader="Important message"

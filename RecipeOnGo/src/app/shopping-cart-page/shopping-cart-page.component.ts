@@ -129,7 +129,6 @@ export class ShoppingCartPageComponent  implements OnInit {
 
   async presentNotLoginAlert() {
     const alert = await this.alertController.create({
-      mode: "ios",
       header: "Please register or login",
       subHeader: "This shopping list functionality needs you to have an account",
       buttons: [
