@@ -11,6 +11,8 @@
 <ion-content>
   <!-- <section class="favourites-area ptb-100">
   </section> -->
+  <div class="web-center-container">
+
     <ion-card *ngFor="let item of favouriteRecipes" (click)="goDetail(item)">
       <ion-img src={{item.image}} alt="Imagen"></ion-img>
         <ion-card-header>
@@ -18,6 +20,7 @@
         </ion-card-header>
     </ion-card>
   
+  </div>
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button>
       <ion-icon name="menu-outline"></ion-icon>

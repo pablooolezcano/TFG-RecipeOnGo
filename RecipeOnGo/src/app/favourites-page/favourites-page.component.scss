@@ -44,6 +44,10 @@ header {
     object-fit: cover;
     border-radius: 10px;
   }
+  .web-center-container{
+    margin: 0 auto;
+    max-width: 600px;
+  }
   ion-card{
     --background: white;
     padding: 10px;
@@ -58,7 +62,7 @@ header {
   ion-fab-button{
   --background: rgb(92, 173, 64); 
   --background-activated: #7cc558;
-  // --background-hover: #a3e681;
+  --background-hover: #7cc558;
   // --box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
   --color: white;
   }

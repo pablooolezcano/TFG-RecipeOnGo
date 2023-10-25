@@ -2,23 +2,19 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <ion-header>
-  <!-- <header>
-    <div class="toolbar">
-      <h1 class="centered-title">Recipe on Go</h1>
-    </div>
-  </header> -->
   <ion-toolbar>
     <ion-title>Recipe on go</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
+<div class="container">
 
   <div class="image-container">
 
-    <ion-img src="assets\logo.png" alt="foto" class="image"></ion-img>
+      <ion-img src="assets\logo.png" alt="foto" class="image"></ion-img>
   </div>
     
-      <ion-list class="custom-ion-list">
+      <ion-list class="custom-ion-list" mode="md">
           <ion-label *ngIf="isLogged">Welcome, {{userName}}</ion-label>
           <ion-title class="custom">Ready to start cooking Recipes?</ion-title>
       </ion-list>
@@ -52,6 +48,7 @@
           <ion-button><a routerLink="/register" class="nav-link" routerLinkActive="active"></a>Register</ion-button>
           <ion-button><a routerLink="/search-recipe" class="nav-link" routerLinkActive="active"></a>Skip and start cooking</ion-button>
       </ion-list> -->
+    </div>
 </ion-content>
 <ion-footer>
   <footer>

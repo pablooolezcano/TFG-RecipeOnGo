@@ -31,6 +31,26 @@
   </ion-item-group>
 </ion-header>
 <ion-content>
+  <div class="web-center-container">
+
+    <ion-list *ngIf="existResult">
+      <ion-card *ngFor="let item of recipes" (click)="goDetail(item)">
+            <ion-img *ngIf="item.image!= ''" src={{item.image}} alt="Imagen"></ion-img>
+            <!-- url de su imagen por defecto cuando no hay imagen de su receta: https://spoonacular.com/recipeImages/624304-312x231.jpg -->
+          <ion-card-header>
+            <ion-card-title>{{item.title}}</ion-card-title>
+          </ion-card-header>
+      </ion-card>
+    </ion-list>
+  </div>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button *ngIf="existResult" (click)="showSearchBar()">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+<app-footer></app-footer>
 
   <!-- <section class="search-area ptb-100"> -->
     <!-- <ion-card *ngIf="!existResult">
@@ -47,22 +67,4 @@
       </div>
     </ion-card> -->
   <!-- </section> -->
-    <ion-list *ngIf="existResult">
-      <ion-card *ngFor="let item of recipes" (click)="goDetail(item)">
-            <ion-img *ngIf="item.image!= ''" src={{item.image}} alt="Imagen"></ion-img>
-            <!-- url de su imagen por defecto cuando no hay imagen de su receta: https://spoonacular.com/recipeImages/624304-312x231.jpg -->
-          <ion-card-header>
-            <ion-card-title>{{item.title}}</ion-card-title>
-          </ion-card-header>
-      </ion-card>
-    </ion-list>
-
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button *ngIf="existResult" (click)="showSearchBar()">
-      <ion-icon name="close-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-</ion-content>
-<app-footer></app-footer>
-
 <!-- [routerLink]="['/recipe-detail', item.id]" -->

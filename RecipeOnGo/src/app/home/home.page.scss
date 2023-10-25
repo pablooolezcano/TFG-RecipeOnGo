@@ -22,21 +22,10 @@ header {
   font-weight: bold;
 }
 
-.image-container {
-  text-align: center;
-  align-items: center;
-  
-}
 
 .image {
   display: block;
   margin: 0 auto;
-}
-
-#container {
-  text-align: center;
-  position: relative;
-  z-index: 2;
 }
 
 #container strong {
@@ -123,6 +112,13 @@ footer {
 
 .toolbar i {
   margin: 0 10px;
+}
+.container {
+  margin-top: 10%;
+}
+.image-container {
+  margin: 0 auto;
+  max-width: 500px;
 }
 ion-button{
   --background: rgb(92, 173, 64);
