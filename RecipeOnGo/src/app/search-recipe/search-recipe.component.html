@@ -1,33 +1,32 @@
 <ion-header>
-  <!-- <header>
-    <div class="toolbar">
-      <h1 class="centered-title">Search for Recipes</h1>
-    </div>
-  </header> -->
   <ion-toolbar class="title">
     <ion-title>Search for Recipes</ion-title>
+    <app-menu-buttons-item slot="end"></app-menu-buttons-item>
   </ion-toolbar>
   <ion-item-group>
-  <ion-item-divider>
-    <ion-label color="dark">Escriba los ingredientes</ion-label>
-  </ion-item-divider>
-  <ion-item lines="none">
-    <ion-toolbar>
-      <ion-searchbar 
-      id="mySearchBar" 
-      class="custom" 
-      (ionChange)="search($event)"
-      placeholder="chicken, cheese, milk, etc"></ion-searchbar>
-      <!-- <ion-item lines="none" mode="md">
-        <ion-input 
-        placeholder="chicken, cheese, milk, etc" 
-        [value]="searchText"
-        (ionInput)="onInputText($event)"
-        #ionInputEl></ion-input>
-        <ion-icon name="search-outline" slot="end"></ion-icon>
-      </ion-item> -->
-    </ion-toolbar>
-  </ion-item>
+    <div class="web-center-container">
+
+      <ion-item-divider>
+        <ion-label color="dark">Escriba los ingredientes</ion-label>
+      </ion-item-divider>
+    </div>
+    <ion-item lines="none">
+      <ion-toolbar>
+        <div class="web-center-container">
+
+          <ion-searchbar id="mySearchBar" class="custom" (ionChange)="search($event)"
+            placeholder="chicken, cheese, milk, etc"></ion-searchbar>
+        </div>
+        <!-- <ion-item lines="none" mode="md">
+          <ion-input 
+          placeholder="chicken, cheese, milk, etc" 
+          [value]="searchText"
+          (ionInput)="onInputText($event)"
+          #ionInputEl></ion-input>
+          <ion-icon name="search-outline" slot="end"></ion-icon>
+        </ion-item> -->
+      </ion-toolbar>
+    </ion-item>
   </ion-item-group>
 </ion-header>
 <ion-content>
@@ -35,11 +34,11 @@
 
     <ion-list *ngIf="existResult">
       <ion-card *ngFor="let item of recipes" (click)="goDetail(item)">
-            <ion-img *ngIf="item.image!= ''" src={{item.image}} alt="Imagen"></ion-img>
-            <!-- url de su imagen por defecto cuando no hay imagen de su receta: https://spoonacular.com/recipeImages/624304-312x231.jpg -->
-          <ion-card-header>
-            <ion-card-title>{{item.title}}</ion-card-title>
-          </ion-card-header>
+        <ion-img *ngIf="item.image!= ''" src={{item.image}} alt="Imagen"></ion-img>
+        <!-- url de su imagen por defecto cuando no hay imagen de su receta: https://spoonacular.com/recipeImages/624304-312x231.jpg -->
+        <ion-card-header>
+          <ion-card-title>{{item.title}}</ion-card-title>
+        </ion-card-header>
       </ion-card>
     </ion-list>
   </div>
@@ -51,20 +50,3 @@
   </ion-fab>
 </ion-content>
 <app-footer></app-footer>
-
-  <!-- <section class="search-area ptb-100"> -->
-    <!-- <ion-card *ngIf="!existResult">
-      <div class="search-container">
-        <form class="form">
-          <div class="form-group">
-            <label id="name">Escriba los ingredientes</label>
-            <input type="text" id="search_text" class="form-control" placeholder="chicken, cheese, milk, etc">
-          </div>
-          <div class="button-container">
-            <ion-button (click)="search()">SEARCH</ion-button>
-          </div>
-        </form>
-      </div>
-    </ion-card> -->
-  <!-- </section> -->
-<!-- [routerLink]="['/recipe-detail', item.id]" -->

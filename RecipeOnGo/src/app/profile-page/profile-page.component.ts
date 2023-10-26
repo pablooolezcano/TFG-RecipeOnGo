@@ -61,7 +61,7 @@ export class ProfilePageComponent  implements OnInit {
       this.user_uid = localStorage.getItem('user_login_uid');
     }
     if(!localStorage.getItem('user_login_uid')){
-      this.router.navigateByUrl("/login");
+      this.presentNotLoginAlert();
     }
     const firebaseConfig = environment.firebaseConfig;
 
@@ -423,6 +423,18 @@ export class ProfilePageComponent  implements OnInit {
     await alert.present();
   }
 
+  async presentNotLoginAlert() {
+    const alert = await this.alertController.create({
+      header: 'You have to login to access to the profile page',
+      buttons: [{
+        text: 'Go to login page',
+        handler: () => {
+          this.router.navigateByUrl("/login");
+        },
+      },],
+    });
+    await alert.present();
+  }
   async presentErrorAuthenticate() {
     const alert = await this.alertController.create({
       header: 'Error trying to Authenticate',

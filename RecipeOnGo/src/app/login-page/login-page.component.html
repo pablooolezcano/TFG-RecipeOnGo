@@ -1,14 +1,10 @@
 <ion-header>
-  <!-- <header>
-    <div class="toolbar">
-      <h1 class="centered-title">Login Page</h1>
-    </div>
-  </header> -->
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button default-href="#"></ion-back-button>
     </ion-buttons>
     <ion-title>Login Page</ion-title>
+    <app-menu-buttons-item slot="end"></app-menu-buttons-item>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -16,16 +12,12 @@
 
     <ion-card>
       <ion-label id="email">Introduzca email</ion-label>
-      <!-- <input type="email" id="login-email" class="form-control" placeholder="Introduzca email"
-                    name="username"> -->
       <ion-item lines="none">
         <ion-input placeholder="Introduzca email" type="email" [value]="loginEmail" (ionInput)="onInputEmail($event)"
           #ionInputEl></ion-input>
       </ion-item>
       <br>
       <ion-label id="password">Contraseña</ion-label>
-      <!-- <input type="password" id="login-passwd" class="form-control" placeholder="Contraseña"
-                    name="password"> -->
       <ion-item lines="none">
         <ion-input placeholder="Contraseña" type="password" [value]="loginPasswd" (ionInput)="onInputPassword($event)"
           #ionInputE2></ion-input>
@@ -38,10 +30,6 @@
         <br>
         <ion-button routerLink="/register" routerLinkActive="active">Register now</ion-button>
       </ion-list>
-      <!-- <div *ngIf="errorMessage" class="alert alert-danger mt-2" role="alert">
-                {{errorMessage}}
-              </div> -->
-  
     </ion-card>
   </div>
 </ion-content>

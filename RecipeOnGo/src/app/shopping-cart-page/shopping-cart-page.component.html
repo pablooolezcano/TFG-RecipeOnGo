@@ -1,18 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Your Shopping List</ion-title>
+    <app-menu-buttons-item slot="end"></app-menu-buttons-item>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <div class="web-center-container">
     <div *ngFor="let item of shoppingList">
-      <ion-card *ngIf="item != ''"> 
+      <ion-card *ngIf="item != ''">
         <ion-item lines="none">
           <ion-card-title color="medium">{{item}}</ion-card-title>
           <ion-icon name="close-outline" size="large" slot="end" (click)="deleteListItem(item)"></ion-icon>
         </ion-item>
       </ion-card>
-    </div> 
+    </div>
   </div>
 </ion-content>
 
@@ -20,37 +21,27 @@
   <div class="web-center-container">
     <ion-card>
       <ion-card-content>
-              <ion-label id="name" color="medium">Escriba los alimentos</ion-label>
-              <!-- <input type="text" id="input_text" class="form-control" placeholder="Rice"> -->
-              <ion-item lines="none">
-                <ion-input 
-                placeholder="rice" 
-                [value]="inputText"
-                [clearInput]="true"
-                (ionInput)="onInputText($event)"
-                #ionInputEl
-                [counter]="true" maxlength="50"></ion-input>
-              </ion-item>
-  
-              <ion-list class="toolbar">
-                <ion-button (click)="add_to_database()">
-                  <ion-icon slot="start" name="arrow-up-outline"></ion-icon>
-                  Update
-                </ion-button>
-                <ion-button id="delete-list-button" color="danger">
-                  <ion-icon slot="start" name="close-outline"></ion-icon>
-                  Delete List
-                </ion-button>
-                <ion-alert 
-                class="custom-alert"
-                trigger="delete-list-button"
-                header="Alert"
-                subHeader="Important message"
-                message="Are you sure about deleting the hole shopping list?"
-                [buttons]="alertButtons">
-                </ion-alert>
-              </ion-list>
-    </ion-card-content>
+        <ion-label id="name" color="medium">Escriba los alimentos</ion-label>
+        <!-- <input type="text" id="input_text" class="form-control" placeholder="Rice"> -->
+        <ion-item lines="none">
+          <ion-input placeholder="rice" [value]="inputText" [clearInput]="true" (ionInput)="onInputText($event)"
+            #ionInputEl [counter]="true" maxlength="50"></ion-input>
+        </ion-item>
+
+        <ion-list class="toolbar">
+          <ion-button (click)="add_to_database()">
+            <ion-icon slot="start" name="arrow-up-outline"></ion-icon>
+            Update
+          </ion-button>
+          <ion-button id="delete-list-button" color="danger">
+            <ion-icon slot="start" name="close-outline"></ion-icon>
+            Delete List
+          </ion-button>
+          <ion-alert class="custom-alert" trigger="delete-list-button" header="Alert" subHeader="Important message"
+            message="Are you sure about deleting the hole shopping list?" [buttons]="alertButtons">
+          </ion-alert>
+        </ion-list>
+      </ion-card-content>
     </ion-card>
   </div>
 </ion-toolbar>

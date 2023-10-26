@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router} from '@angular/router';
-import {getAuth, reauthenticateWithCredential, EmailAuthProvider, onAuthStateChanged, deleteUser, updateProfile, updateEmail, updatePassword, signInWithEmailAndPassword} from "firebase/auth";
+import {getAuth, onAuthStateChanged} from "firebase/auth";
 import { environment } from 'src/environments/environment';
 import { initializeApp } from "firebase/app";
-
+import { Device } from '@capacitor/device';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -13,7 +13,8 @@ export class HomePage {
 
   userName: string | null= "";
   isLogged: boolean = false;
-  constructor(private router: Router) { }
+  platform: string = "";
+  constructor(private router: Router) {}
 
   ionViewWillEnter(){
     this.isLogged = false;
@@ -28,7 +29,12 @@ export class HomePage {
   }
 
   ngOnInit() {
-    
+    this.getDeviceInfo();
+  }
+  async getDeviceInfo(){
+    const info = await Device.getInfo();
+    this.platform = info.platform;
+    console.log(this.platform);
   }
   getActualFirebaseUser(auth: any){
     onAuthStateChanged(auth, (user) => {

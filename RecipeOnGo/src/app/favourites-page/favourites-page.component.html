@@ -1,25 +1,19 @@
 <ion-header>
-  <!-- <header>
-    <div class="toolbar">
-      <h1 class="centered-title">Favourite Recipes</h1>
-    </div>
-  </header> -->
   <ion-toolbar>
     <ion-title>Favourite Recipes</ion-title>
+    <app-menu-buttons-item slot="end"></app-menu-buttons-item>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <!-- <section class="favourites-area ptb-100">
-  </section> -->
   <div class="web-center-container">
 
     <ion-card *ngFor="let item of favouriteRecipes" (click)="goDetail(item)">
       <ion-img src={{item.image}} alt="Imagen"></ion-img>
-        <ion-card-header>
-          <ion-card-title>{{item.title}}</ion-card-title>
-        </ion-card-header>
+      <ion-card-header>
+        <ion-card-title>{{item.title}}</ion-card-title>
+      </ion-card-header>
     </ion-card>
-  
+
   </div>
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
     <ion-fab-button>
@@ -32,14 +26,9 @@
       <ion-fab-button id="delete-fav-list-button">
         <ion-icon name="close-outline"></ion-icon>
       </ion-fab-button>
-      <ion-alert 
-              class="custom-alert"
-              trigger="delete-fav-list-button"
-              header="Alert"
-              subHeader="Important message"
-              message="Are you sure about deleting your hole favourite recipes list?"
-              [buttons]="alertButtons">
-              </ion-alert>
+      <ion-alert class="custom-alert" trigger="delete-fav-list-button" header="Alert" subHeader="Important message"
+        message="Are you sure about deleting your hole favourite recipes list?" [buttons]="alertButtons">
+      </ion-alert>
     </ion-fab-list>
   </ion-fab>
 </ion-content>
