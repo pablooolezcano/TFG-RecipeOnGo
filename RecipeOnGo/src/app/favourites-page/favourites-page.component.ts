@@ -76,6 +76,14 @@ export class FavouritesPageComponent  implements OnInit {
             console.log(response);
             //this.favouriteRecipes.push(response);
             this.favouriteRecipes = response;
+            console.log(this.favouriteRecipes);
+          },
+          (error) => {
+            if(error.status == 402){
+              this.presentErrorMaxQueries();
+            }else{
+              this.presentUnexpectedError();
+            }
           });
 
     console.log(this.favouriteRecipes);
@@ -137,6 +145,32 @@ export class FavouritesPageComponent  implements OnInit {
     const alert = await this.alertController.create({
       header: 'Data access error',
       subHeader: 'An error has occurred while accessing your data in the database',
+      message: 'check internet connection',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+        },
+      },],
+    });
+    await alert.present();
+  }
+  async presentErrorMaxQueries() {
+    const alert = await this.alertController.create({
+      header: 'The maximum number of daily requests has been reached',
+      subHeader: 'Tomorrow you will again have prescription requests available',
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          this.router.navigateByUrl("/home");
+        },
+      },],
+    });
+    await alert.present();
+  }
+  async presentUnexpectedError() {
+    const alert = await this.alertController.create({
+      header: 'An unexpected error has occurred',
+      subHeader: 'Please check your Internet connection and try again.',
       buttons: [{
         text: 'OK',
         handler: () => {
