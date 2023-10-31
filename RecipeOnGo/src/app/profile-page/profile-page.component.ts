@@ -59,23 +59,21 @@ export class ProfilePageComponent  implements OnInit {
   ionViewWillEnter(){
     if(localStorage.getItem('user_login_uid') != null){
       this.user_uid = localStorage.getItem('user_login_uid');
+      const firebaseConfig = environment.firebaseConfig;
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+      this.getActualFirebaseUser(auth);
     }
     if(!localStorage.getItem('user_login_uid')){
       this.presentNotLoginAlert();
     }
-    const firebaseConfig = environment.firebaseConfig;
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth();
-    this.getActualFirebaseUser(auth);
   }
-  ngOnInit() {
-    //esto tengo que ponerlo en el ngOnInit de ionic, y en los demás igual
-    
-  }
+  ngOnInit() {}
 
   logOut(){
     localStorage.removeItem('user_login_uid');
+    this.userEmail = "";
+    this.userName = "";
     this.router.navigateByUrl("/home");
   }
 
@@ -99,8 +97,6 @@ export class ProfilePageComponent  implements OnInit {
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
-    console.log(auth);
-    //get user para pasarle un Objeto user al método deleteUser:
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // El usuario está autenticado
@@ -140,7 +136,6 @@ export class ProfilePageComponent  implements OnInit {
   }
   
   updateFirebaseUserName(data: Array<string>){
-    //name and foto:
     const firebaseConfig = environment.firebaseConfig;
 
     const app = initializeApp(firebaseConfig);
@@ -426,12 +421,22 @@ export class ProfilePageComponent  implements OnInit {
   async presentNotLoginAlert() {
     const alert = await this.alertController.create({
       header: 'You have to login to access to the profile page',
-      buttons: [{
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Alert canceled');
+            this.router.navigateByUrl("/");
+          },
+        },
+        {
         text: 'Go to login page',
         handler: () => {
           this.router.navigateByUrl("/login");
         },
-      },],
+      }],
     });
     await alert.present();
   }

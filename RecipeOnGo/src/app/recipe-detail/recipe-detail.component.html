@@ -9,7 +9,7 @@
 </ion-header>
 <ion-content>
   <div class="web-center-container">
-    <ion-card>
+    <ion-card *ngIf="!navFromAdvanceSearch">
       <ion-img src={{imageUrl}} alt="Imagen"
         *ngIf="imageUrl != 'https://spoonacular.com/recipeImages/624304-312x231.jpg'"></ion-img>
 
@@ -38,6 +38,36 @@
       <p class="card-p-text" *ngFor="let item of recipeIntructions">{{item.number}}. {{item.step}}</p>
 
     </ion-card>
+
+    <ion-card *ngIf="navFromAdvanceSearch">
+      <ion-img src={{imageUrl}} alt="Imagen"
+        *ngIf="imageUrl != 'https://spoonacular.com/recipeImages/624304-312x231.jpg'"></ion-img>
+
+      <ion-card-header *ngIf="imageUrl == 'https://spoonacular.com/recipeImages/624304-312x231.jpg'">
+        <ion-card-title>{{recipeTitle}}</ion-card-title>
+      </ion-card-header>
+      <ion-toggle #myToggle *ngIf="user_uid" (click)="toggleFavorite()">Mark as favourite:</ion-toggle>
+      <ion-card-content>
+
+      </ion-card-content>
+      <ion-list>
+
+        <ion-title class="custom" mode="md">Nutrients</ion-title>
+        <p class="card-p-text">Calories: {{caloriesInfo}} kcal aprox</p>
+        <p class="card-p-text">Protein: {{proteinsInfo}}gr</p>
+        <p class="card-p-text">Fats: {{fatsInfo}}gr</p>
+      </ion-list>
+      <ion-list>
+
+        <ion-title class="custom" mode="md">Ingredients</ion-title>
+        <p class="card-p-text" *ngFor="let item of extendedIngredients">{{item.original}}</p>
+      </ion-list>
+
+      <ion-title class="custom" mode="md">Recipe Intructions</ion-title>
+      <p class="card-p-text" *ngFor="let item of recipeIntructions">{{item.number}}. {{item.step}}</p>
+
+    </ion-card>
+
   </div>
 </ion-content>
 <app-footer></app-footer>

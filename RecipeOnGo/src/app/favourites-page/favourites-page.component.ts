@@ -62,14 +62,6 @@ export class FavouritesPageComponent  implements OnInit {
       console.log(error)
     }
     this.favouriteRecipes = [];
-    // this.favouritesIdsList.forEach(recipeId => {
-    //   this.apiService.getFavouriteRecipes(recipeId).subscribe(
-    //     (response) => {
-    //       console.log(response);
-    //       this.favouriteRecipes.push(response);
-    //     }
-    //   )
-    // });
 
     this.apiService.getFavouriteRecipes(this.favouritesIdsList.toString()).subscribe(
           (response) => {
@@ -119,6 +111,7 @@ export class FavouritesPageComponent  implements OnInit {
     const alert = await this.alertController.create({
       header: "Please register or login",
       subHeader: "This favourites recipes functionality needs you to have an account",
+      backdropDismiss: false,
       buttons: [
         {
           text: 'Cancel',

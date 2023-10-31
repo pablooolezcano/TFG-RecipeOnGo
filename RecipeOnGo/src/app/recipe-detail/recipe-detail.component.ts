@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 import { SpooncularApiService } from '../services/spooncular-api.service';
 import { initializeApp } from "firebase/app";
 import { environment } from 'src/environments/environment';
-import { getFirestore, doc,getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { getFirestore, doc,getDoc, setDoc } from "firebase/firestore";
 import { IonToggle } from '@ionic/angular';
 import { ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
@@ -23,7 +22,12 @@ export class RecipeDetailComponent  implements OnInit {
   missingIngredients: any = [];
   usedIngredients: any = [];
   extendedIngredients: any = [];
+  advancedRecipeInfo: any = [];
+  caloriesInfo: string = "";
+  fatsInfo: string = "";
+  proteinsInfo: string = "";
   navFromFavs: boolean = false;
+  navFromAdvanceSearch: boolean = false;
   recipeIntructions: any;
   recipeId: number = 0;
   favRecipesList: any = [];
@@ -32,16 +36,12 @@ export class RecipeDetailComponent  implements OnInit {
 
   constructor(private router: Router, private apiService: SpooncularApiService, private alertController: AlertController) { }
 
-  ionViewWillEnter(){
-    console.log("testtt IonViewEnter");
-    //this.ngOnInit();
-  }
+  ionViewWillEnter(){}
+
   ngOnInit() {
-    console.log("Test ngOnInit")
     this.extendedIngredients = [];
     this.usedIngredients = [];
     const navigation = this.router.getCurrentNavigation();
-    console.log(navigation);
     if (navigation && navigation.extras.state) {
       const data = navigation.extras.state['data'];
 
@@ -49,30 +49,34 @@ export class RecipeDetailComponent  implements OnInit {
       this.recipeTitle = data.title;
       this.imageUrl = data.image;
 
-      if(data.extendedIngredients){
+      if (data.extendedIngredients) {
         this.extendedIngredients = data.extendedIngredients;
+        this.recipeIntructions = data.analyzedInstructions['0']['steps'];
         this.navFromFavs = true;
-      } else if(data.usedIngredients){
+      } else if (data.usedIngredients) {
         this.missingIngredients = data.missedIngredients;
         this.usedIngredients = data.usedIngredients;
+        //GET RECIPE INSTRUCTIONS
+        this.apiService.getRecipeIntructions(data.id).subscribe(
+          (response) => {
+            let array = Object.entries(response);
+            this.recipeIntructions = array['0']['1']['steps'];
+            console.log("Intructions ONLY in NOrmal Search")
+          },
+        );
+      } else if (data.nutrition) {
+        this.navFromAdvanceSearch = true;
+        console.log("Test when IS Advance Search")
+        this.apiService.getOneRecipeInfo(this.recipeId).subscribe((response) => {
+          this.advancedRecipeInfo = response;
+          this.extendedIngredients = this.advancedRecipeInfo.extendedIngredients;
+          console.log(this.extendedIngredients)
+        })
+        this.caloriesInfo = data.nutrition.nutrients.find((nutrient: any) => nutrient.name === 'Calories').amount.toFixed(1);
+        this.proteinsInfo = data.nutrition.nutrients.find((nutrient: any) => nutrient.name === 'Protein').amount.toFixed(1);
+        this.fatsInfo = data.nutrition.nutrients.find((nutrient: any) => nutrient.name === 'Fat').amount.toFixed(1);
+        this.recipeIntructions = data.analyzedInstructions['0']['steps'];
       }
-
-      console.log(data);
-
-      //GET RECIPE INSTRUCTIONS
-      this.apiService.getRecipeIntructions(data.id).subscribe(
-        (response) => {
-          //console.log(typeof response);
-          let array = Object.entries(response);
-          this.recipeIntructions = array['0']['1']['steps'];
-          //algunas recetas tienen un segundo elemento: array['1'], que tiene las serving suggestion, a ve que hago con eso
-          //console.log(array);
-          array['0']['1']['steps'].forEach((item: any) => {
-          })
-
-        },
-      );
-      //puede que sea el async
       this.getFireDatabaseDoc();
     }
   }

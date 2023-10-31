@@ -131,6 +131,7 @@ export class ShoppingCartPageComponent  implements OnInit {
     const alert = await this.alertController.create({
       header: "Please register or login",
       subHeader: "This shopping list functionality needs you to have an account",
+      backdropDismiss: false,
       buttons: [
         {
           text: 'Cancel',
