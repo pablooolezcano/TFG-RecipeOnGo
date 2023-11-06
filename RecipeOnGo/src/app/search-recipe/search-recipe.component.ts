@@ -13,7 +13,7 @@ export class SearchRecipeComponent  implements OnInit {
   imageUrl : string = "";
   recipeTitle: string = "";
   searchText: string = "";
-  @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;
+  // @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;
   recipes: any = "";
   advanceSearchRecipes: any = [];
   existResult: boolean = false;
@@ -76,10 +76,10 @@ export class SearchRecipeComponent  implements OnInit {
     this.existResult = false;
   }
 
-  onInputText(ev: any) {
-    const value = ev.target!.value;
-    this.ionInputEl.value = this.searchText = value;
-  }
+  // onInputText(ev: any) {
+  //   const value = ev.target!.value;
+  //   this.ionInputEl.value = this.searchText = value;
+  // }
 
   search(event: any){
     console.log(event.detail.value)
