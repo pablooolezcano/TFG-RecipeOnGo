@@ -15,17 +15,9 @@
       <ion-toolbar>
         <div class="web-center-container">
 
-          <ion-searchbar id="mySearchBar" class="custom" (ionChange)="search($event)"
+          <ion-searchbar id="mySearchBar" (ionChange)="search($event)"
             placeholder="chicken, cheese, milk, etc"></ion-searchbar>
         </div>
-        <!-- <ion-item lines="none" mode="md">
-          <ion-input 
-          placeholder="chicken, cheese, milk, etc" 
-          [value]="searchText"
-          (ionInput)="onInputText($event)"
-          #ionInputEl></ion-input>
-          <ion-icon name="search-outline" slot="end"></ion-icon>
-        </ion-item> -->
       </ion-toolbar>
     </ion-item>
   </ion-item-group>
@@ -36,7 +28,6 @@
     <ion-list *ngIf="existResult">
       <ion-card *ngFor="let item of recipes" (click)="goDetail(item)">
         <ion-img *ngIf="item.image!= ''" src={{item.image}} alt="Imagen"></ion-img>
-        <!-- url de su imagen por defecto cuando no hay imagen de su receta: https://spoonacular.com/recipeImages/624304-312x231.jpg -->
         <ion-card-header>
           <ion-card-title>{{item.title}}</ion-card-title>
         </ion-card-header>
