@@ -47,18 +47,6 @@ export class RegisterPageComponent  implements OnInit {
   }
 
   register(){
-    
-    // let inputName = document.getElementById("register-name") as HTMLInputElement;
-    // this.registerName = inputName.value;
-    // console.log(this.registerName);
-
-    // let inputEmail = document.getElementById("register-email") as HTMLInputElement;
-    // this.registerEmail = inputEmail.value;
-    // console.log(this.registerEmail);
-
-    // let inputPasswd = document.getElementById("register-passwd") as HTMLInputElement;
-    // this.registerPasswd = inputPasswd.value;
-    // console.log(this.registerPasswd);
 
     const firebaseConfig = environment.firebaseConfig;
     const app = initializeApp(firebaseConfig);
@@ -80,11 +68,11 @@ export class RegisterPageComponent  implements OnInit {
             updateProfile(user, {
               displayName: this.registerName
             }).then(() => {
-              console.log("Profile created! (name added)");
+              // Profile created! (name added)
               // ...
             }).catch((error) => {
               this.presentErrorRegister();
-              console.log("An error occurred while updating profile name");
+              console.log("An error occurred while updating profile name: ", error);
               // ...
             });
           } else {
@@ -93,7 +81,6 @@ export class RegisterPageComponent  implements OnInit {
           }
         });
         // El usuario se ha registrado exitosamente
-        console.log("Usuario registrado:", userCredential.user);
         this.router.navigateByUrl("/login");
       } catch (error) {
         // Ocurrió un error durante el registro

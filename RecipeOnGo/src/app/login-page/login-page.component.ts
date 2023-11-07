@@ -38,13 +38,6 @@ export class LoginPageComponent  implements OnInit {
   }
 
   login(){
-    // let inputEmail = document.getElementById("login-email") as HTMLInputElement;
-    // this.loginEmail = inputEmail.value;
-    // console.log(this.loginEmail);
-
-    // let inputPasswd = document.getElementById("login-passwd") as HTMLInputElement;
-    // this.loginPasswd = inputPasswd.value;
-    // console.log(this.loginPasswd);
 
     const firebaseConfig = environment.firebaseConfig;
 
@@ -60,7 +53,6 @@ export class LoginPageComponent  implements OnInit {
         );
     
         // El usuario ha iniciado sesión exitosamente
-        console.log("Usuario ha iniciado sesión:", userCredential.user.uid);
         localStorage.setItem('user_login_uid', userCredential.user.uid);
         this.router.navigateByUrl("/");
       } catch (error) {

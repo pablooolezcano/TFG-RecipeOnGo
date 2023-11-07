@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { getFirestore, doc,getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
 import { environment } from 'src/environments/environment';
 import { initializeApp } from "firebase/app";
 import { SpooncularApiService } from '../services/spooncular-api.service';
@@ -10,7 +10,7 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './favourites-page.component.html',
   styleUrls: ['./favourites-page.component.scss'],
 })
-export class FavouritesPageComponent  implements OnInit {
+export class FavouritesPageComponent implements OnInit {
 
   user_uid: string | null = "";
   favouritesIdsList: Array<any> = [];
@@ -34,11 +34,11 @@ export class FavouritesPageComponent  implements OnInit {
   ];
   constructor(private apiService: SpooncularApiService, private router: Router, private alertController: AlertController) { }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.user_uid = localStorage.getItem('user_login_uid');
     this.getFireDatabaseDoc();
 
-    if(!this.user_uid){
+    if (!this.user_uid) {
       this.presentNotLoginAlert();
     }
   }
@@ -47,40 +47,34 @@ export class FavouritesPageComponent  implements OnInit {
     const app = initializeApp(firebaseConfig);
   }
 
-  async getFireDatabaseDoc(){
+  async getFireDatabaseDoc() {
     const db = getFirestore();
     const docRef = doc(db, "favourites", "" + this.user_uid);
 
-    try{
+    try {
       const docSnap = await getDoc(docRef);
-      if(docSnap.exists()){
+      if (docSnap.exists()) {
         this.favouritesIdsList = docSnap.data()['ids'];
-        console.log(this.favouritesIdsList)
       }
-    } catch(error) {
+    } catch (error) {
       this.presentErrorGetFirebaseData();
       console.log(error)
     }
     this.favouriteRecipes = [];
 
     this.apiService.getFavouriteRecipes(this.favouritesIdsList.toString()).subscribe(
-          (response) => {
-            console.log(response);
-            //this.favouriteRecipes.push(response);
-            this.favouriteRecipes = response;
-            console.log(this.favouriteRecipes);
-          },
-          (error) => {
-            if(error.status == 402){
-              this.presentErrorMaxQueries();
-            }else{
-              this.presentUnexpectedError();
-            }
-          });
-
-    console.log(this.favouriteRecipes);
+      (response) => {
+        this.favouriteRecipes = response;
+      },
+      (error) => {
+        if (error.status == 402) {
+          this.presentErrorMaxQueries();
+        } else {
+          this.presentUnexpectedError();
+        }
+      });
   }
-  goDetail(item: any){
+  goDetail(item: any) {
     const navigationExtras: NavigationExtras = {
       state: {
         data: item
@@ -89,11 +83,11 @@ export class FavouritesPageComponent  implements OnInit {
     this.router.navigate(['/recipe-detail', item.id], navigationExtras);
   }
 
-  goToSearch(){
+  goToSearch() {
     this.router.navigateByUrl("/search-recipe");
   }
 
-  deleteFavList(){
+  deleteFavList() {
     const firebaseConfig = environment.firebaseConfig;
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
@@ -117,7 +111,6 @@ export class FavouritesPageComponent  implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Alert canceled');
             this.router.navigateByUrl("/");
           },
         },
@@ -125,7 +118,6 @@ export class FavouritesPageComponent  implements OnInit {
           text: 'Go to Login',
           role: 'confirm',
           handler: () => {
-            console.log();
             this.router.navigateByUrl("/login");
           },
         },

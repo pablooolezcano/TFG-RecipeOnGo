@@ -61,16 +61,13 @@ export class RecipeDetailComponent  implements OnInit {
           (response) => {
             let array = Object.entries(response);
             this.recipeIntructions = array['0']['1']['steps'];
-            console.log("Intructions ONLY in NOrmal Search")
           },
         );
       } else if (data.nutrition) {
         this.navFromAdvanceSearch = true;
-        console.log("Test when IS Advance Search")
         this.apiService.getOneRecipeInfo(this.recipeId).subscribe((response) => {
           this.advancedRecipeInfo = response;
           this.extendedIngredients = this.advancedRecipeInfo.extendedIngredients;
-          console.log(this.extendedIngredients)
         })
         this.caloriesInfo = data.nutrition.nutrients.find((nutrient: any) => nutrient.name === 'Calories').amount.toFixed(1);
         this.proteinsInfo = data.nutrition.nutrients.find((nutrient: any) => nutrient.name === 'Protein').amount.toFixed(1);
@@ -81,7 +78,6 @@ export class RecipeDetailComponent  implements OnInit {
     }
   }
   async getFireDatabaseDoc(){
-    //ver si puedo centralizar esto porq a veces da problemas con obtener datos
     const firebaseConfig = environment.firebaseConfig;
     const app = initializeApp(firebaseConfig);
     const db = getFirestore();
@@ -91,10 +87,8 @@ export class RecipeDetailComponent  implements OnInit {
       const docSnap = await getDoc(docRef);
       if(docSnap.exists()){
         this.favRecipesList = docSnap.data()['ids'];
-        console.log(this.favRecipesList)
         let list = this.favRecipesList;
         if (list.includes(this.recipeId)) {
-            console.log(this.myToggle.checked);
             this.myToggle.checked = true;
           }
       }
@@ -104,9 +98,7 @@ export class RecipeDetailComponent  implements OnInit {
     }
   }
   toggleFavorite() {
-    //aqui invierto el true/false porque está al reves idk why
     this.isFavorite = !this.myToggle.checked;
-    console.log(this.isFavorite);
 
     const firebaseConfig = environment.firebaseConfig;
     const app = initializeApp(firebaseConfig);
@@ -132,7 +124,6 @@ export class RecipeDetailComponent  implements OnInit {
       if (this.favRecipesList) {
         list = this.favRecipesList;
         if (list.includes(this.recipeId)) {
-          console.log(this.recipeId)
           let index = list.indexOf(this.recipeId);
           list.splice(index, 1);
           const docRef = doc(db, "favourites", "" + this.user_uid);

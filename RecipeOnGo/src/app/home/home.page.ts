@@ -41,10 +41,8 @@ export class HomePage {
       if (user) {
         // El usuario está autenticado
         this.userName = user.displayName;
-        console.log("Usuario autenticado:", user);
       } else {
         // No hay usuario autenticado
-        console.log("No hay usuario autenticado.");
       }
     });
   }

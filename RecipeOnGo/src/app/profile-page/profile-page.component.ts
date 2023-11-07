@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
-import {getAuth, reauthenticateWithCredential, EmailAuthProvider, onAuthStateChanged, deleteUser, updateProfile, updateEmail, updatePassword, signInWithEmailAndPassword} from "firebase/auth";
+import {getAuth, reauthenticateWithCredential, EmailAuthProvider, onAuthStateChanged, deleteUser, updateProfile, updateEmail, updatePassword} from "firebase/auth";
 import { getFirestore, doc, deleteDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { environment } from 'src/environments/environment';
@@ -17,14 +17,12 @@ export class ProfilePageComponent  implements OnInit {
       text: 'Cancel',
       role: 'cancel',
       handler: () => {
-        console.log('Alert canceled');
       },
     },
     {
       text: 'Yes',
       role: 'confirm',
       handler: () => {
-        console.log('Alert confirmed');
         this.logOut();
       },
     },
@@ -34,14 +32,12 @@ export class ProfilePageComponent  implements OnInit {
       text: 'Cancel',
       role: 'cancel',
       handler: () => {
-        console.log('Alert canceled');
       },
     },
     {
       text: 'Yes',
       role: 'confirm',
       handler: () => {
-        console.log('Alert confirmed');
         this.deleteAccount();
       },
     },
@@ -84,7 +80,6 @@ export class ProfilePageComponent  implements OnInit {
         this.currentUser = user;
         this.userEmail = user.email;
         this.userName = user.displayName;
-        console.log("Usuario autenticado:", this.currentUser);
       } else {
         // No hay usuario autenticado
         console.log("No hay usuario autenticado.");
@@ -100,7 +95,6 @@ export class ProfilePageComponent  implements OnInit {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // El usuario está autenticado
-        console.log("Usuario autenticado:", user.uid);
         deleteUserFirebase(user);
         deleteUserDataFromFire(user.uid);
         this.router.navigateByUrl("/");
@@ -125,7 +119,6 @@ export class ProfilePageComponent  implements OnInit {
       try {
         await deleteUser(user);
         localStorage.removeItem('user_login_uid');
-        console.log("Usuario: " + user.uid + "eliminado");
         
       } catch (error) {
         // Ocurrió un error durante el inicio de sesión
@@ -146,10 +139,9 @@ export class ProfilePageComponent  implements OnInit {
       updateProfile(this.currentUser, {
             displayName: data[0]
           }).then(() => {
-            console.log("Profile updated!");
             this.presentSuccessUpdateToast();
           }).catch((error) => {
-            console.log("An error occurred while updating profile name");
+            console.log("An error occurred while updating profile name: ", error);
             this.presentErrorChangeData();
           });
     }
@@ -160,19 +152,16 @@ export class ProfilePageComponent  implements OnInit {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
     if (data[0] != '') {
-      console.log(data[1]);
       onAuthStateChanged(auth, (user) => {
         this.toastMessage = "email";
         if (user) {
           // El usuario está autenticado
           updateEmail(user, data[0]).then(() => {
             this.presentSuccessUpdateToast();
-            console.log("Email updated!");
           }).catch((error) => {
-            console.log("An error occurred while updating email");
+            console.log("An error occurred while updating email: ", error);
             this.presentErrorChangeData();
           });
-          console.log("Usuario autenticado:", this.currentUser);
         } else {
           // No hay usuario autenticado
           console.log("No hay usuario autenticado.");
@@ -186,20 +175,17 @@ export class ProfilePageComponent  implements OnInit {
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
 
-
     onAuthStateChanged(auth, (user) => {
       this.toastMessage = "password";
       if (user) {
         // El usuario está autenticado
         updatePassword(user, data).then(() => {
-          console.log("Contraseña cambiada correctamente")
           this.presentSuccessUpdateToast();
         }).catch((error) => {
           // An error ocurred
           console.log(error);
           this.presentErrorChangeData();
         });
-        console.log("Usuario autenticado:", this.currentUser);
       } else {
         // No hay usuario autenticado
         console.log("No hay usuario autenticado.");
@@ -231,7 +217,6 @@ export class ProfilePageComponent  implements OnInit {
         }).catch((error) => {
           this.presentErrorAuthenticate();
         });
-        console.log("Usuario autenticado:", this.currentUser);
       } else {
         // No hay usuario autenticado
         console.log("No hay usuario autenticado.");
@@ -247,14 +232,12 @@ export class ProfilePageComponent  implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Alert canceled');
           },
         },
         {
           text: 'Authenticate',
           role: 'confirm',
           handler: (data) => {
-            console.log(data[0]);
             this.changeEmail = true;
             this.reAuthenticateUser(data);
           },
@@ -284,14 +267,12 @@ export class ProfilePageComponent  implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Alert canceled');
           },
         },
         {
           text: 'Authenticate',
           role: 'confirm',
           handler: (data) => {
-            console.log(data[0]);
             this.changePasswd = true;
             this.reAuthenticateUser(data);
           },
@@ -320,14 +301,12 @@ export class ProfilePageComponent  implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Alert canceled');
           },
         },
         {
           text: 'Change Password',
           role: 'confirm',
           handler: (data) => {
-            console.log(data[0]);
             this.changePassword(data[0]);
           },
         },
@@ -349,14 +328,12 @@ export class ProfilePageComponent  implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Alert canceled');
           },
         },
         {
           text: 'Update profile name',
           role: 'confirm',
           handler: (data) => {
-            console.log(data);
             this.updateFirebaseUserName(data);
           },
         },
@@ -378,14 +355,12 @@ export class ProfilePageComponent  implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Alert canceled');
           },
         },
         {
           text: 'Update profile email',
           role: 'confirm',
           handler: (data) => {
-            console.log(data);
             this.updateFirebaseUserEmail(data);
           },
         },
@@ -427,7 +402,6 @@ export class ProfilePageComponent  implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Alert canceled');
             this.router.navigateByUrl("/");
           },
         },

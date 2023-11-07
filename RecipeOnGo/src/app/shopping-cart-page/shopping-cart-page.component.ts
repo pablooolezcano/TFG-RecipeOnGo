@@ -17,14 +17,12 @@ export class ShoppingCartPageComponent  implements OnInit {
       text: 'Cancel',
       role: 'cancel',
       handler: () => {
-        console.log('Alert canceled');
       },
     },
     {
       text: 'Yes',
       role: 'confirm',
       handler: () => {
-        console.log('Alert confirmed');
         this.deleteList();
       },
     },
@@ -58,7 +56,6 @@ export class ShoppingCartPageComponent  implements OnInit {
       const docSnap = await getDoc(docRef);
       if(docSnap.exists()){
         this.shoppingList = docSnap.data()['list'];
-        console.log(this.shoppingList)
       }
     } catch(error) {
       this.presentErrorGetFirebaseData();
@@ -77,8 +74,6 @@ export class ShoppingCartPageComponent  implements OnInit {
     const db = getFirestore(app);
 
     let list;
-    // let inputText = document.getElementById("input_text") as HTMLInputElement;
-    // this.inputText = inputText.value;
     if(this.inputText != ""){
       list = this.shoppingList;
       list.push(this.inputText);
@@ -105,9 +100,7 @@ export class ShoppingCartPageComponent  implements OnInit {
     updateDoc(docRef, data)
   }
 
-  //si todo va bien xd:
   deleteListItem(item: string) {
-    console.log("Holi");
     const firebaseConfig = environment.firebaseConfig;
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
@@ -115,7 +108,6 @@ export class ShoppingCartPageComponent  implements OnInit {
     if (this.shoppingList) {
       list = this.shoppingList;
       if (list.includes(item)) {
-        console.log(item)
         let index = list.indexOf(item);
         list.splice(index, 1);
         const docRef = doc(db, "shopping-lists", "" + this.user_uid);
@@ -137,7 +129,6 @@ export class ShoppingCartPageComponent  implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Alert canceled');
             this.router.navigateByUrl("/");
           },
         },
@@ -145,7 +136,6 @@ export class ShoppingCartPageComponent  implements OnInit {
           text: 'Go to Login',
           role: 'confirm',
           handler: () => {
-            console.log();
             this.router.navigateByUrl("/login");
           },
         },
@@ -165,13 +155,4 @@ export class ShoppingCartPageComponent  implements OnInit {
     });
     await alert.present();
   }
-
-  //Get All Documents from a FireStoreCollection:
-  // const colRef = collection(db, "shopping-lists");
-    // const docsSnap = await getDocs(colRef);
-    // docsSnap.forEach(doc => {
-
-    //   this.shoppingList = doc.data()['list'];
-    //   //console.log(doc.data());
-    // })
 }
