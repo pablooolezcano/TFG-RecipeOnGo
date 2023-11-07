@@ -5,7 +5,6 @@
     <ion-toolbar>
       <ion-title>Recipe on go</ion-title>
       <ion-buttons slot="end" *ngIf="platform == 'web'">
-        <!-- <ion-label>Menu</ion-label> -->
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
     </ion-toolbar>
@@ -44,7 +43,6 @@
         <a routerLink="/favourites" routerLinkActive="active"><i class="fas fa-heart"></i></a>
         <a routerLink="/shopping-cart" routerLinkActive="active"><i class="fas fa-shopping-cart"></i></a>
         <a *ngIf="isLogged" routerLink="/profile" routerLinkActive="active"><i class="fas fa-user"></i></a>
-        <!-- <a *ngIf="!isLogged" routerLink="/login" routerLinkActive="active"><i class="fas fa-user"></i></a> -->
       </div>
     </footer>
   </ion-footer>

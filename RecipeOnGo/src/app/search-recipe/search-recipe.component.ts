@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SpooncularApiService } from '../services/spooncular-api.service';
 import { Router, NavigationExtras } from '@angular/router';
-import type { IonInput } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-search-recipe',
@@ -13,7 +12,6 @@ export class SearchRecipeComponent  implements OnInit {
   imageUrl : string = "";
   recipeTitle: string = "";
   searchText: string = "";
-  // @ViewChild('ionInputEl', { static: true }) ionInputEl!: IonInput;
   recipes: any = "";
   advanceSearchRecipes: any = [];
   existResult: boolean = false;
@@ -76,13 +74,7 @@ export class SearchRecipeComponent  implements OnInit {
     this.existResult = false;
   }
 
-  // onInputText(ev: any) {
-  //   const value = ev.target!.value;
-  //   this.ionInputEl.value = this.searchText = value;
-  // }
-
   search(event: any){
-    console.log(event.detail.value)
     this.searchText = event.detail.value;
     if(this.searchText !== ""){
       this.apiService.getRecipes(this.searchText).subscribe(
@@ -164,32 +156,26 @@ export class SearchRecipeComponent  implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Alert canceled');
           },
         },
         {
           text: 'Search',
           role: 'confirm',
           handler: (data) => {
-            console.log(data);
             const defaultValues = [1, 2000, 1000, 1];
             [3, 4, 5, 6].forEach((index) => {
               if (data[index] === '') {
                 data[index] = defaultValues[index - 3];
               }
             });
-            console.log(data);
             this.apiService.getAdvanceQueryRecipes(data[0], data[1], data[2], data[3], data[4], data[5], data[6]).subscribe(
               (response) => {
                 this.advanceSearchRecipes = response;
                 if(this.advanceSearchRecipes.totalResults == 0){
                   this.presentNoResultError();
                 }else{
-
                   this.recipes = this.advanceSearchRecipes.results;
                   this.existResult = true;
-                  console.log(this.advanceSearchRecipes);
-                  console.log(this.advanceSearchRecipes.totalResults);
                 }
               }
             )

@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class SpooncularApiService {
 
+  apiKey: string = '15b9af73d0d44a19b7cc19073dfcf8a9';
   constructor(private http: HttpClient) { }
 
   // recipes by ingredients:
   getRecipes(ingredients: string): Observable<any> {
-    const apiKey = '15b9af73d0d44a19b7cc19073dfcf8a9';
     const url = 'https://api.spoonacular.com/recipes/findByIngredients?apiKey=15b9af73d0d44a19b7cc19073dfcf8a9&ingredients='+ ingredients + '&number=8';
     return this.http.get(url);
   }
@@ -22,14 +22,12 @@ export class SpooncularApiService {
   }
   //Get Analyzed Recipe Instructions
   getRecipeIntructions(id: number){
-    const apiKey = '15b9af73d0d44a19b7cc19073dfcf8a9';
     const url = 'https://api.spoonacular.com/recipes/' + id + '/analyzedInstructions?apiKey=15b9af73d0d44a19b7cc19073dfcf8a9';
     return this.http.get(url);
   }
 
   getFavouriteRecipes(ids: string){
-    const apiKey = '15b9af73d0d44a19b7cc19073dfcf8a9';
-    const url = 'https://api.spoonacular.com/recipes/informationBulk?apiKey=15b9af73d0d44a19b7cc19073dfcf8a9&ids=' + ids.toString();
+    const url = 'https://api.spoonacular.com/recipes/informationBulk?apiKey=15b9af73d0d44a19b7cc19073dfcf8a9&ids=' + ids;
     return this.http.get(url);
   }
 
