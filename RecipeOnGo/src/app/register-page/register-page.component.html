@@ -10,24 +10,24 @@
 <ion-content>
   <div class="web-center-container">
     <ion-card>
-      <ion-label id="name">Nombre</ion-label>
+      <ion-label id="name">Name</ion-label>
       <ion-item lines="none">
         <ion-input placeholder="Name" [value]="registerName" (ionInput)="onInputName($event)" #ionInputEl></ion-input>
       </ion-item>
 
       <br>
 
-      <ion-label id="email">Introduzca email</ion-label>
+      <ion-label id="email">Email</ion-label>
       <ion-item lines="none">
-        <ion-input type="email" placeholder="Introduzca email" [value]="registerEmail" (ionInput)="onInputEmail($event)"
+        <ion-input type="email" placeholder="Enter email" [value]="registerEmail" (ionInput)="onInputEmail($event)"
           #ionInputE2></ion-input>
       </ion-item>
 
       <br>
 
-      <ion-label id="password">Contraseña</ion-label>
+      <ion-label id="password">Password</ion-label>
       <ion-item lines="none">
-        <ion-input type="password" placeholder="Contraseña" [value]="registerPasswd"
+        <ion-input type="password" placeholder="Password" [value]="registerPasswd"
           (ionInput)="onInputPassword($event)" #ionInputE3></ion-input>
       </ion-item>
 
