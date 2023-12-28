@@ -70,7 +70,7 @@ export class SearchRecipeComponent  implements OnInit {
     this.router.navigate(['/recipe-detail', item.id], navigationExtras);
   }
 
-  showSearchBar(){
+  hideResult(){
     this.existResult = false;
   }
 
