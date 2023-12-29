@@ -1,32 +1,49 @@
 <ion-header>
-  <header>
-    <div class="toolbar">
-      <h1 class="centered-title">Search for Recipes</h1>
+  <ion-toolbar class="title">
+    <ion-title>Search for Recipes</ion-title>
+    <app-menu-buttons-item slot="end"></app-menu-buttons-item>
+  </ion-toolbar>
+  <ion-item-group>
+    <div class="web-center-container">
+
+      <ion-item-divider>
+        <ion-label color="dark">Type the ingredients here</ion-label>
+        <ion-button slot="end" (click)="presentAdvanceSearchAlert()">Advance Search</ion-button>
+      </ion-item-divider>
     </div>
-  </header>
+    <ion-item lines="none">
+      <ion-toolbar>
+        <div class="web-center-container">
+
+          <ion-searchbar id="mySearchBar" (ionChange)="search($event)"
+            placeholder="chicken, cheese, milk, etc"></ion-searchbar>
+        </div>
+      </ion-toolbar>
+    </ion-item>
+  </ion-item-group>
 </ion-header>
 <ion-content>
-  <section class="search-area ptb-100">
-    <ion-card>
-      <div class="search-container">
-        <form class="form">
-          <div class="form-group">
-            <label id="name">Escriba los ingredientes</label>
-            <input type="text" id="search_text" class="form-control" placeholder="chicken, cheese, milk, etc">
-          </div>
-          <div class="button-container">
-            <button type="button" id="searchButton" (click)="search()">SEARCH</button>
-          </div>
-        </form>
-      </div>
-      <div *ngIf="imageUrl!= ''" class="card-content">
-        <div class="image-container">
-          <img src={{imageUrl}} alt="Imagen">
-        </div>
-        <h2 class="card-title">{{recipeTitle}}</h2>
-      </div>
-    </ion-card>
-  </section>
+  <div class="web-center-container">
+
+    <ion-list *ngIf="existResult">
+      <ion-card *ngFor="let item of recipes" (click)="goDetail(item)">
+        <ion-img *ngIf="item.image!= ''" src={{item.image}} alt="Imagen"></ion-img>
+        <ion-card-header>
+          <ion-card-title>{{item.title}}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+    </ion-list>
+  </div>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button *ngIf="existResult" (click)="hideResult()">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab slot="fixed" vertical="top" horizontal="end">
+    <ion-fab-button (click)="showRecipesSuggestions()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
 <app-footer></app-footer>
-

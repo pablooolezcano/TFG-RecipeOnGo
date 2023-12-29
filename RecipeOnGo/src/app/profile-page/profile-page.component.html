@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile Page</ion-title>
+    <app-menu-buttons-item slot="end"></app-menu-buttons-item>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="web-center-container">
+    <ion-card class="custom">
+      <ion-card-title color="dark">User information</ion-card-title>
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-label color="medium">Name</ion-label>
+        </ion-item-divider>
+        <ion-item lines="none">
+          <ion-card-title id="email" color="dark">{{userName}}</ion-card-title>
+          <ion-icon name="pencil-outline" slot="end" (click)="presentChangeNameAlert()"></ion-icon>
+        </ion-item>
+        <ion-item-divider>
+          <ion-label id="email" color="medium">Email</ion-label>
+        </ion-item-divider>
+        <ion-item lines="none">
+          <ion-card-title id="email" color="dark">{{userEmail}}</ion-card-title>
+          <ion-icon name="pencil-outline" slot="end" (click)="presentReAuthEmailAlert()"></ion-icon>
+        </ion-item>
+      </ion-item-group>
+      <ion-list>
+        <ion-button id="change-passwd-button" (click)="presentReAuthPasswordAlert()">Change Password</ion-button>
+      </ion-list>
+    </ion-card>
+    <ion-card>
+      <ion-list>
+        <ion-label color="medium">Click to log out</ion-label>
+        <br>
+        <ion-button id="log-out-button" color="danger">Log Out</ion-button>
+        <br>
+        <ion-label color="medium">Click to delete your account</ion-label>
+        <br>
+        <ion-button id="delete-account-button" color="danger">Delete Account</ion-button>
+      </ion-list>
+
+      <ion-alert class="custom-alert" trigger="log-out-button" header="Alert" subHeader="Important message"
+        message="Are you sure about logging out?" [buttons]="alertButtons1">
+      </ion-alert>
+      <ion-alert class="custom-alert" trigger="delete-account-button" header="Alert" subHeader="Important message"
+        message="Are you sure about deleting your account?" [buttons]="alertButtons2">
+      </ion-alert>
+    </ion-card>
+  </div>
+</ion-content>
+<app-footer></app-footer>

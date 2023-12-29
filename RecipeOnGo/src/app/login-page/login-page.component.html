@@ -1,42 +1,36 @@
 <ion-header>
-  <header>
-    <div class="toolbar">
-      <h1 class="centered-title">Login Page</h1>
-    </div>
-  </header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Login Page</ion-title>
+    <app-menu-buttons-item slot="end"></app-menu-buttons-item>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-  <section class="profile-authentication-area">
+  <div class="web-center-container">
+
     <ion-card>
-      <div class="container">
-        <div class="row">
-          <div class="login-container">
-            <div class="login-form">
-
-              <form class="form">
-                <div class="form-group">
-                  <label id="email">Introduzca email</label>
-                  <input type="email" id="login-email" class="form-control" placeholder="Introduzca email"
-                    name="username">
-                </div>
-
-                <div class="form-group">
-                  <label id="password">Contraseña</label>
-                  <input type="password" id="login-passwd" class="form-control" placeholder="Contraseña"
-                    name="password">
-                </div>
-                <div class="button-container">
-                  <button type="button" id="loginButton" (click)="login()">LOGIN</button>
-                </div>
-              </form>
-            </div>
-            <!-- <div *ngIf="errorMessage" class="alert alert-danger mt-2" role="alert">
-                {{errorMessage}}
-              </div> -->
-          </div>
-        </div>
-      </div>
+      <ion-label id="email">Email</ion-label>
+      <ion-item lines="none">
+        <ion-input placeholder="Enter email" type="email" [value]="loginEmail" (ionInput)="onInputEmail($event)"
+          #ionInputEl></ion-input>
+      </ion-item>
+      <br>
+      <ion-label id="password">Password</ion-label>
+      <ion-item lines="none">
+        <ion-input placeholder="Password" type="password" [value]="loginPasswd" (ionInput)="onInputPassword($event)"
+          #ionInputE2></ion-input>
+      </ion-item>
+      <br>
+      <ion-list>
+        <ion-button (click)="login()">LOGIN</ion-button>
+        <br><br>
+        <ion-label>Not registered yet?</ion-label>
+        <br>
+        <ion-button routerLink="/register" routerLinkActive="active">Register now</ion-button>
+      </ion-list>
     </ion-card>
-  </section>
+  </div>
 </ion-content>
 <app-footer></app-footer>

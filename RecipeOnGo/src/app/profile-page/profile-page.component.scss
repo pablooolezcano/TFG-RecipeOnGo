@@ -1,0 +1,28 @@
+  ion-button {
+    --background: rgb(92, 173, 64);
+    --background-activated: #7cc558;
+    --border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  ion-card {
+    padding: 20px;
+    --background: white;
+  }
+
+  ion-card.custom {
+    padding: 20px;
+    --background: white;
+    margin-top: 20%;
+  }
+
+  ion-list {
+    text-align: center;
+  }
+
+  .web-center-container {
+    margin: 0 auto;
+    max-width: 600px;
+  }

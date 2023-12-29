@@ -24,3 +24,28 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+ion-alert.custom-alert {
+    --backdrop-opacity: 0.7;
+    
+}
+ion-item-divider{
+    --background: white;
+}
+ion-toolbar{
+    --background: rgb(92, 173, 64);
+    --color: white;
+}
+ion-back-button{
+    --color: white;
+}
+ion-content{
+    --background: white;
+}
+ion-input{
+    --border-color: white;
+}
+
+.custom-alert .alert-button-group {
+    padding: 8px;
+}

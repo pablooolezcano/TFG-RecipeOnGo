@@ -7,7 +7,8 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { SearchRecipeComponent } from './search-recipe/search-recipe.component';
 import { ShoppingCartPageComponent } from './shopping-cart-page/shopping-cart-page.component';
 import { FavouritesPageComponent } from './favourites-page/favourites-page.component';
-
+import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 const routes: Routes = [
   {
     // path: 'home',
@@ -19,6 +20,8 @@ const routes: Routes = [
   {path: 'search-recipe', component: SearchRecipeComponent},
   {path: 'shopping-cart', component: ShoppingCartPageComponent},
   {path: 'favourites', component: FavouritesPageComponent},
+  {path: 'recipe-detail/:id', component: RecipeDetailComponent},
+  {path: 'profile', component: ProfilePageComponent},
   {
     path: '',
     redirectTo: 'home',
